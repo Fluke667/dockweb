@@ -31,6 +31,9 @@ apk update && apk add --no-cache --virtual build-deps \
          
 # Expose the ports for nginx
 EXPOSE 80 443
+# MariaDB port
+EXPOSE 3306
+
 
 VOLUME ["/etc/letsencrypt"]
 VOLUME ["/var/www/nextcloud"]
