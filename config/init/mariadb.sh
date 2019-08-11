@@ -1,5 +1,23 @@
 #!/bin/sh
 
+
+  # Create root user, set root password, drop useless table
+  # Delete root user except for
+  execute <<SQL
+    -- What's done in this file shouldn't be replicated
+    --  or products like mysql-fabric won't work
+    SET @@SESSION.SQL_LOG_BIN=0;
+
+    DELETE FROM mysql.user WHERE user NOT IN ('mysql.sys', 'mysqlxsys', 'root') OR host NOT IN ('localhost') ;
+    SET PASSWORD FOR 'root'@'localhost'=PASSWORD('${MYSQL_ROOT_PASS}') ;
+    GRANT ALL ON *.* TO 'root'@'localhost' WITH GRANT OPTION ;
+    DROP DATABASE IF EXISTS test ;
+    FLUSH PRIVILEGES ;
+SQL
+
+
+
+
 rm /etc/my.cnf
 
 cat >/etc/my.cnf <<-EOF
