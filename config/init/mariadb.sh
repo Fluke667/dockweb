@@ -1,46 +1,5 @@
 #!/bin/sh
 
-if [ -d "/run/mysqld" ]; then
-	echo "[i] mysqld already present, skipping creation"
-	chown -R mysql:mysql /run/mysqld
-else
-	echo "[i] mysqld not found, creating...."
-	mkdir -p /run/mysqld
-	chown -R mysql:mysql /run/mysqld
-fi
-
-
-if [ -d /var/lib/mysql/mysql ]; then
-	echo "[i] MySQL directory already present, skipping creation"
-	chown -R mysql:mysql /var/lib/mysql
-else
-	echo "[i] MySQL data directory not found, creating initial DBs"
-
-	chown -R mysql:mysql /var/lib/mysql
-
-	mysql_install_db --user=mysql --ldata=/var/lib/mysql > /dev/null
-
-	if [ "$MARIADB_ROOT_PASS" = "" ]; then
-		MARIADB_ROOT_PASS=`pwgen 16 1`
-		echo "[i] MySQL root Password: $MARIADB_ROOT_PASS"
-	fi
-
-  
-  # Create root user, set root password, drop useless table
-  # Delete root user except for
-  execute <<SQL
-    -- What's done in this file shouldn't be replicated
-    --  or products like mysql-fabric won't work
-    SET @@SESSION.SQL_LOG_BIN=0;
-    DELETE FROM mysql.user WHERE user NOT IN ('mysql.sys', 'mysqlxsys', 'root') OR host NOT IN ('localhost') ;
-    SET PASSWORD FOR 'root'@'localhost'=PASSWORD('${MARIADB_ROOT_PASS}') ;
-    GRANT ALL ON *.* TO 'root'@'localhost' WITH GRANT OPTION ;
-    DROP DATABASE IF EXISTS test ;
-    FLUSH PRIVILEGES ;
-SQL
-
-
-
 
 rm /etc/my.cnf
 
@@ -75,4 +34,70 @@ symbolic-links=0
 !includedir /etc/my.cnf.d
 EOF
 
-"$@"
+
+if [ -d "/run/mysqld" ]; then
+	echo "[i] mysqld already present, skipping creation"
+	chown -R mysql:mysql /run/mysqld
+else
+	echo "[i] mysqld not found, creating...."
+	mkdir -p /run/mysqld
+	chown -R mysql:mysql /run/mysqld
+fi
+
+
+if [ -d /var/lib/mysql/mysql ]; then
+	echo "[i] MySQL directory already present, skipping creation"
+	chown -R mysql:mysql /var/lib/mysql
+else
+	echo "[i] MySQL data directory not found, creating initial DBs"
+
+	chown -R mysql:mysql /var/lib/mysql
+
+	mysql_install_db --user=mysql --ldata=/var/lib/mysql > /dev/null
+
+	if [ "$MARIADB_ROOT_PASS" = "" ]; then
+		MARIADB_ROOT_PASS=`pwgen 16 1`
+		echo "[i] MySQL root Password: $MARIADB_ROOT_PASS"
+	fi
+
+
+    cat << EOF > $tfile
+USE mysql;
+FLUSH PRIVILEGES ;
+GRANT ALL ON *.* TO 'root'@'%' identified by '$MARIADB_ROOT_PASS' WITH GRANT OPTION ;
+GRANT ALL ON *.* TO 'root'@'localhost' identified by '$MARIADB_ROOT_PASS' WITH GRANT OPTION ;
+SET PASSWORD FOR 'root'@'localhost'=PASSWORD('${MARIADB_ROOT_PASS}') ;
+DROP DATABASE IF EXISTS test ;
+FLUSH PRIVILEGES ;
+EOF
+
+	if [ "$DB_DATABASE" != "" ]; then
+	    echo "[i] Creating database: $DB_DATABASE"
+		if [ "$MARIADB_CHARSET" != "" ] && [ "$MARIADB_COLLATION" != "" ]; then
+			echo "[i] with character set [$MARIADB_CHARSET] and collation [$MARIADB_COLLATION]"
+			echo "CREATE DATABASE IF NOT EXISTS \`$DB_DATABASE\` CHARACTER SET $MARIADB_CHARSET COLLATE $MARIADB_COLLATION;" >> $tfile
+		else
+			echo "[i] with character set: 'utf8' and collation: 'utf8_general_ci'"
+			echo "CREATE DATABASE IF NOT EXISTS \`$DB_DATABASE\` CHARACTER SET utf8 COLLATE utf8_general_ci;" >> $tfile
+		fi
+
+	 if [ "$DB_USER" != "" ]; then
+		echo "[i] Creating user: $DB_USER with password $DB_PASS"
+		echo "GRANT ALL ON \`$DB_DATABASE\`.* to '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS';" >> $tfile
+	    fi
+	fi
+
+	/usr/bin/mysqld --user=mysql --bootstrap --verbose=0 --skip-name-resolve --skip-networking=0 < $tfile
+	rm -f $tfile
+
+
+
+	echo
+	echo 'MySQL init process done. Ready for start up.'
+	echo
+
+	echo "exec /usr/bin/mysqld --user=mysql --console --skip-name-resolve --skip-networking=0" "$@"
+fi
+
+
+exec /usr/bin/mysqld --user=mysql --console --skip-name-resolve --skip-networking=0 $@
