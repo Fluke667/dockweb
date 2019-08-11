@@ -17,6 +17,8 @@ http {
 
         ##
         # Basic Settings
+        #
+        # Optimized with: https://hostadvice.com/how-to/how-to-tune-and-optimize-performance-of-nginx-web-server/
         ##
 
         sendfile on;
@@ -25,7 +27,14 @@ http {
         keepalive_timeout 65;
         types_hash_max_size 2048;
         # server_tokens off;
-        client_max_body_size 10000M;
+        client_body_buffer_size 10K;
+        client_header_buffer_size 1k;
+        client_max_body_size 8m;
+        large_client_header_buffers 4 4k;
+        client_body_timeout 12;
+        client_header_timeout 12;
+        keepalive_timeout 15;
+        send_timeout 10;
 
         # server_names_hash_bucket_size 64;
         # server_name_in_redirect off;
