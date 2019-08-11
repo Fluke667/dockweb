@@ -4,13 +4,13 @@ rm /etc/nginx/nginx.conf &
 
 cat >/etc/nginx/nginx.conf<<-EOF
 user www-data;
-worker_processes auto;
+worker_processes 4;
 pid /run/nginx.pid;
 include /etc/nginx/modules-enabled/*.conf;
 
 events {
-        worker_connections 768;
-        # multi_accept on;
+        worker_connections 1024;
+        multi_accept off;
 }
 
 http {
@@ -53,14 +53,16 @@ http {
         ##
 
         gzip on;
-        gzip_disable "msie6";
 
         gzip_vary on;
         gzip_proxied any;
-        gzip_comp_level 6;
+        gzip_comp_level 1;
         gzip_buffers 16 8k;
         gzip_http_version 1.1;
         gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+
+
+
 
 
         ##
