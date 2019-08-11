@@ -11,4 +11,11 @@
 elif [ "${1}" == 'certbot-renew' ]; then
    exec certbot renew
 else
+
+
+
+mysql -uroot -p"$MYSQL_ROOT_PASSWORD" test_docker -e "INSERT INTO users(username, name) VALUES ('admin', 'Admin')"
+
+
+
   "$@"
