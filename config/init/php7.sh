@@ -3,14 +3,7 @@
 
 
 echo "extension=redis.so" > /etc/php7/php.ini
-/etc/php7/php.ini
-/etc/php7/php.ini
-/etc/php7/php.ini
-/etc/php7/php.ini
-/etc/php7/php.ini
-/etc/php7/php.ini
-/etc/php7/php.ini
-/etc/php7/php.ini
+echo "extension=smbclient.so" > /etc/php7/php.ini
 
 
 cat >/etc/php7/conf.d/apcu.ini<<-EOF
