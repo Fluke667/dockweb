@@ -23,6 +23,8 @@ apk update && apk add --no-cache --virtual build-deps \
          libmemcached-dev libzip-dev openldap-dev imagemagick-dev libwebp-dev && \
          
          pip3 install --upgrade pip && \
+         pear config-set php_ini /etc/php7/php.ini && \
+         pecl config-set php_ini /etc/php7/php.ini && \
          mkdir /var/www/nextcloud && \
          cd /tmp && \
          pecl install smbclient && \
