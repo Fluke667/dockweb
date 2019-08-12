@@ -4,6 +4,9 @@ FROM nginx:alpine3.10 as web-builder
 FROM golang:1.12-alpine3.10 as go-builder
 
 
+ENV NEXTCLOUD_DL=https://download.nextcloud.com/server/releases/latest.tar.bz2
+
+
 apk update && apk add --no-cache \ 
          php7-pecl-mcrypt php7-pecl-ssh2 php7-pecl-igbinary php7-pear php7-fpm php7-bcmath php7-ctype php7-curl php7-dom php7-exif \
          php7-fileinfo php7-gmp php7-iconv php7-imagick php7-json php7-mbstring php7-mysqli php7-opcache php7-openssl php7-ftp \
