@@ -23,12 +23,12 @@ apk update && apk add --no-cache --virtual build-deps \
          libmemcached-dev libzip-dev openldap-dev imagemagick-dev libwebp-dev && \
          
          pip3 install --upgrade pip && \
-         mkdir /var/www /var/www/nextcloud && \
+         mkdir /var/www/nextcloud && \
          cd /tmp && \
          pecl install smbclient && \
          wget -q ${NEXTCLOUD_DL}.tar.bz2 && \
          tar -xjf latest.tar.bz2 --strip 1 -C /var/www/nextcloud && \
-         chown -R nginx. /var/lib/nginx /var/log/nginx /var/log/php7 /var/www/nextcloud && \
+         chown -R nginx. /var/lib/nginx /var/log/nginx /var/log/php7 /var/www/nextcloud /var/www && \
          apk del build-deps
          
          
