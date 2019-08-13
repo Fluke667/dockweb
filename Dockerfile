@@ -16,7 +16,7 @@ RUN apk update && apk add --no-cache \
          nginx openssl curl ca-certificates ffmpeg libressl libsmbclient libxml2 re2c python3 su-exec tzdata composer certbot-nginx \
          mariadb mariadb-client mariadb-server-utils pwgen && \
          
-apk update && apk add --no-cache --virtual build-deps \ 
+    apk update && apk add --no-cache --virtual build-deps \ 
          gd-dev geoip-dev libmaxminddb-dev libxml2-dev libxslt-dev linux-headers openssl-dev paxmark pcre-dev perl-dev pkgconf \
          zlib-dev gcc libc-dev make libedit-dev mercurial alpine-sdk findutils curl gnupg1 autoconf automake build-base gnupg \
          libtool php7-dev samba-dev tar wget freetype-dev icu-dev libevent-dev libjpeg-turbo-dev libmcrypt-dev libpng-dev \
@@ -30,7 +30,7 @@ apk update && apk add --no-cache --virtual build-deps \
          pecl install smbclient && \
          wget -q ${NEXTCLOUD_DL}.tar.bz2 && \
          tar -xjf latest.tar.bz2 --strip 1 -C /var/www/nextcloud && \
-         chown -R nginx. /var/lib/nginx /var/log/nginx /var/log/php7 /var/www/nextcloud /var/www && \
+         chown -R nginx /var/lib/nginx /var/log/nginx /var/log/php7 /var/www/nextcloud /var/www && \
          apk del build-deps
          
          
