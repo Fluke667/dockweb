@@ -4,7 +4,7 @@ FROM fluke667/alpine:latest
 #FROM golang:1.12-alpine3.10 as go-builder
 
 
-ENV NEXTCLOUD_DL=https://download.nextcloud.com/server/releases/latest.tar.bz2
+ENV NEXTCLOUD_DL=https://download.nextcloud.com/server/releases/latest
 
 
 RUN apk update && apk add --no-cache \ 
@@ -26,7 +26,7 @@ RUN apk update && apk add --no-cache \
          pear config-set php_ini /etc/php7/php.ini && \
          pecl config-set php_ini /etc/php7/php.ini && \
          pecl install smbclient && \
-         cd /tmp && mkdir /var/www/nextcloud && wget ${NEXTCLOUD_DL}.tar.bz2 && \
+         cd /tmp && mkdir -p /var/www/nextcloud && wget ${NEXTCLOUD_DL}.tar.bz2 && \
          tar -xjf latest.tar.bz2 --strip 1 -C /var/www/nextcloud && \
          chown -R nginx /var/lib/nginx /var/log/nginx /var/log/php7 /var/www/nextcloud /var/www && \
          apk del build-deps
