@@ -1,4 +1,5 @@
- #!/bin/sh
+#!/bin/bash
+
 
 cd /config && chmod u+x * -R &
 sh /config/init/mariadb.sh &
