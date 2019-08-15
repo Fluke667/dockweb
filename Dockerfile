@@ -38,8 +38,7 @@ EXPOSE 80 443
 # MariaDB port
 EXPOSE 3306
 
-
-#VOLUME ["/var/www/nextcloud"]
+VOLUME ["/var/www"]
 
 
 #ADD config /config
