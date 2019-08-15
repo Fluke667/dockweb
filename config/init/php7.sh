@@ -23,7 +23,6 @@ opcache.revalidate_freq=60
 EOF
 
 
-rm /etc/php7/php.ini
 cat >/etc/php7/php.ini<<EOF
 [PHP]
 
@@ -2027,7 +2026,6 @@ ldap.max_links = -1
 ; End:
 EOF
 
-rm /etc/php7/php7-fpm.conf
 cat >/etc/php7/php7-fpm.conf<<EOF
 ;;;;;;;;;;;;;;;;;;;;;
 ; FPM Configuration ;
@@ -2070,7 +2068,7 @@ error_log = log/php7/error.log
 ; Log level
 ; Possible Values: alert, error, warning, notice, debug
 ; Default Value: notice
-log_level = notice
+log_level = debug
 
 ; Log limit on number of characters in the single line (log entry). If the
 ; line is over the limit, it is wrapped on multiple lines. The limit is for
@@ -2174,7 +2172,6 @@ log_level = notice
 include=/etc/php7/php-fpm.d/*.conf
 EOF
 
-rm /etc/php7/php7-fpm.d/www.conf
 cat >/etc/php7/php7-fpm.d/www.conf<<EOF
 ; Start a new pool named 'www'.
 ; the variable $pool can be used in any directive and will be replaced by the
@@ -2211,7 +2208,7 @@ group = nobody
 ;                            (IPv6 and IPv4-mapped) on a specific port;
 ;   '/path/to/unix/socket' - to listen on a unix socket.
 ; Note: This value is mandatory.
-listen = /var/run/php/php7.2-fpm.sock
+listen = /run/php/php7.2-fpm.sock
 
 ; Set listen(2) backlog.
 ; Default Value: 511 (-1 on FreeBSD and OpenBSD)
