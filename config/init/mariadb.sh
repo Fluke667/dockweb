@@ -101,7 +101,7 @@ EOF
 	fi
 	##########
 	/usr/bin/mysqld --user=mysql --bootstrap --verbose=0 --skip-name-resolve --skip-networking=0 < /etc/mysql/tfile
-	rm -f /etc/mysql/tfile
+	#rm -f /etc/mysql/tfile
 
 
 
