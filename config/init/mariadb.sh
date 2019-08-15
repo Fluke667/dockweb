@@ -33,6 +33,53 @@ symbolic-links=0
 !includedir /etc/my.cnf.d
 EOF
 
+rm /etc/my.cnf.d/mariadb-server.cnf
+echo >/etc/my.cnf.d/mariadb-server.cnf<<EOF
+#
+# These groups are read by MariaDB server.
+# Use it for options that only the server (but not clients) should see
+
+# this is read by the standalone daemon and embedded servers
+[server]
+
+# this is only for the mysqld standalone daemon
+[mysqld]
+skip-networking
+
+# Galera-related settings
+[galera]
+# Mandatory settings
+#wsrep_on=ON
+#wsrep_provider=
+#wsrep_cluster_address=
+#binlog_format=row
+#default_storage_engine=InnoDB
+#innodb_autoinc_lock_mode=2
+#
+# Allow server to accept connections on all interfaces.
+#
+#bind-address=0.0.0.0
+#
+# Optional setting
+#wsrep_slave_threads=1
+#innodb_flush_log_at_trx_commit=0
+
+# this is only for embedded server
+[embedded]
+
+# This group is only read by MariaDB servers, not by MySQL.
+# If you use the same .cnf file for MySQL and MariaDB,
+# you can put MariaDB-only options here
+[mariadb]
+log_warnings=4
+log_error=/var/log/mariadb/error.log
+
+# This group is only read by MariaDB-10.3 servers.
+# If you use the same .cnf file for MariaDB of different versions,
+# use this group for options that older servers don't understand
+[mariadb-10.3]
+EOF
+
 
 if [ -d "/run/mysqld" ]; then
 	echo "[i] mysqld already present, skipping creation"
@@ -98,7 +145,7 @@ EOF
 
 	 if [ "$NEXTCLOUD_DB_USER" != "" ]; then
 		echo "[i] Creating user: $NEXTCLOUD_DB_USER with password $NEXTCLOUD_DB_PASS"
-		echo "GRANT ALL ON \`$NEXTCLOUD_DB_DATABASE\`.* to 'NEXTCLOUD_DB_USER'@'%' IDENTIFIED BY '$NEXTCLOUD_DB_PASS';" >> /etc/mysql/tfile
+		echo "GRANT ALL ON \`$NEXTCLOUD_DB_DATABASE\`.* to '$NEXTCLOUD_DB_USER'@'%' IDENTIFIED BY '$NEXTCLOUD_DB_PASS';" >> /etc/mysql/tfile
 	    fi
 	fi
 	##########
