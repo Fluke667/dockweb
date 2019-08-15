@@ -39,7 +39,6 @@ EXPOSE 80 443
 EXPOSE 3306
 
 
-VOLUME ["/etc/letsencrypt"]
 VOLUME ["/var/www/nextcloud"]
 
 
