@@ -33,7 +33,6 @@ symbolic-links=0
 !includedir /etc/my.cnf.d
 EOF
 
-rm /etc/my.cnf.d/mariadb-server.cnf
 echo >/etc/my.cnf.d/mariadb-server.cnf<<EOF
 #
 # These groups are read by MariaDB server.
