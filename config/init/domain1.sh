@@ -2,7 +2,7 @@
 
 mkdir -p /etc/nginx/sites-available /etc/nginx/sites-enabled
 
-cat >/etc/nginx/sites-available/${HOST_DOMAIN1}.conf<<-EOF
+cat >/etc/nginx/sites-enabled/${HOST_DOMAIN1}.conf<<-EOF
 upstream php-handler {
     #server 127.0.0.1:9000;
     server unix:/var/run/php/php7.2-fpm.sock;
