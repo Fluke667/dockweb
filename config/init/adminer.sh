@@ -2,8 +2,8 @@
 
 mkdir /var/www/adminer /var/log/adminer/ &
 cd /tmp &
-wget https://github.com/vrana/adminer/releases/download/v4.7.2/adminer-4.7.2.php
-cp adminer-4.7.2.php /var/www/adminer
+wget https://github.com/vrana/adminer/releases/download/v4.7.2/adminer-4.7.2.php &
+cp adminer-4.7.2.php /var/www/adminer &
 chown -R nginx /var/www/adminer
 
 cat >/etc/nginx/sites-available/adminer.conf<<-EOF
@@ -44,10 +44,10 @@ server {
     # Pass the PHP scripts to FastCGI server
     location ~ \.php$ {
 
-        fastcgi_pass unix:/var/run/php5-fpm.sock;
+        fastcgi_pass unix:/var/run/php7-fpm.sock;
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
         include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME /usr/share/adminer/adminer$fastcgi_script_name;
+        fastcgi_param SCRIPT_FILENAME /var/www/adminer/adminer$fastcgi_script_name;
         fastcgi_param  HTTPS off;
     }
 }
