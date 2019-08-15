@@ -9,16 +9,17 @@ cp /config/etc/php7/php.ini /etc/php7/php.ini &
 
 
  
- if [ -z "${DOCKMAIL}" ]; then
+ if [ -z "${CERTBOT_EMAIL}" ]; then
     DockLog "ERROR: administrator email is mandatory"
-  elif [ -z "${DOCKDOMAINS}" ]; then
+  elif [ -z "${CERTBOT_DOMAINS}" ]; then
     DockLog "ERROR: at least one domain must be specified"
   else
-    exec certbot certonly --verbose --noninteractive --quiet --standalone --agree-tos --email="${CERTBOT_EMAIL}" -d "${CERTBOT_DOMAINS}" 
+    exec certbot certonly --verbose --noninteractive --quiet --standalone --agree-tos --email="${CERTBOT_EMAIL}" -d "${CERTBOT_DOMAINS}"
   fi
 elif [ "${1}" == 'certbot-renew' ]; then
    exec certbot renew
 else
+
 
 
 
