@@ -3,7 +3,7 @@
 cat >/etc/php7/conf.d/apcu.ini<<-EOF
 extension=apcu.so
 apc.enabled=1
-apc.shm_size=<APC_SHM_SIZE>
+apc.shm_size=128M
 apc.ttl=7200
 EOF
 
@@ -16,7 +16,7 @@ zend_extension=opcache.so
 opcache.enable=1
 opcache.enable_cli=1
 opcache.fast_shutdown=1
-opcache.memory_consumption=<OPCACHE_MEM_SIZE>
+opcache.memory_consumption=128M
 opcache.interned_strings_buffer=16
 opcache.max_accelerated_files=10000
 opcache.revalidate_freq=60
