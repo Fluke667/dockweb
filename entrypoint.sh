@@ -5,7 +5,7 @@ cd /config && chmod u+x * -R &
 sh /config/init/mariadb.sh &
 sh /config/init/nginx.sh &
 sh /config/init/php7.sh &
-cp /config/etc/php7/php.ini /etc/php7/php.ini &
+#cp /config/etc/php7/php.ini /etc/php7/php.ini &
 
 
  
@@ -23,7 +23,7 @@ cp /config/etc/php7/php.ini /etc/php7/php.ini &
 
 
 #mysql -uroot -p"$MYSQL_ROOT_PASSWORD" test_docker -e "INSERT INTO users(username, name) VALUES ('admin', 'Admin')"
-/usr/bin/mysqld --user=mysql --console --skip-name-resolve --skip-networking=0 
+#/usr/bin/mysqld --user=mysql --console --skip-name-resolve --skip-networking=0 
 
 
   "$@"
