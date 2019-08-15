@@ -22,8 +22,9 @@ RUN apk update && apk add --no-cache \
          pear config-set php_ini /etc/php7/php.ini && \
          pecl config-set php_ini /etc/php7/php.ini && \
          pecl install smbclient && \
-         cd /tmp && mkdir -p /var/www/nextcloud && wget ${NEXTCLOUD_DL}.tar.bz2 && \
-         tar -xjf latest.tar.bz2 --strip 1 -C /var/www/nextcloud && \
+         mkdir -p /var/www/nextcloud /var/run/php && \
+         cd /tmp && wget ${NEXTCLOUD_DL}.tar.bz2 && \
+         tar -xjf latest.tar.bz2 && cd nextcloud && cp * /var/www/nextcloud && \
          #mkdir -p /var/lib/nginx /var/log/nginx /var/log/php7 && \
          chown -R nginx /var/lib/nginx /var/log/nginx /var/log/php7 /var/www/nextcloud /var/www && \
          apk del build-deps
