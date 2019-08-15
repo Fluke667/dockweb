@@ -42,6 +42,6 @@ VOLUME ["/var/www"]
 ADD config /config
 
 
-COPY entrypoint.sh /
-#RUN chmod a+x /entrypoint.sh
-#ENTRYPOINT ["/entrypoint.sh"]
+COPY entrypoint.sh /usr/bin
+RUN chmod a+x /usr/bin/entrypoint.sh
+ENTRYPOINT ["/usr/bin/entrypoint.sh"]
