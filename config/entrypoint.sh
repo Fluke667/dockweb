@@ -17,7 +17,7 @@ sh /config/init/adminer.sh &
 
 #mysql -uroot -p"$MYSQL_ROOT_PASSWORD" test_docker -e "INSERT INTO users(username, name) VALUES ('admin', 'Admin')"
 mysqld --user=mysql &
-php-fpm7 -c /etc/php7/php.ini -y /etc/php7/php7-fpm.conf &
+php-fpm7 -c /etc/php7/php.ini -y /etc/php7/php-fpm.conf &
 nginx &
 certbot certonly --verbose --noninteractive --quiet --standalone --agree-tos --email="${HOST_EMAIL}" -d "${HOST_DOMAIN1}"
 
