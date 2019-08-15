@@ -13,7 +13,7 @@ RUN apk update && apk add --no-cache \
          php7-gd php7-phar php7-posix php7-session php7-simplexml php7-soap php7-sodium php7-sockets php7-tokenizer php7-imap \
          php7-xml php7-xmlreader php7-xmlwriter php7-zip php7-zlib php7-apcu php7-bz2 php7-cli php7-intl php7-ldap php7-mcrypt \
          php7-memcached php7-pcntl php7-pdo php7-pdo_mysql php7-pdo_pgsql php7-redis \
-         nginx openssl curl ca-certificates ffmpeg libressl libsmbclient libxml2 re2c python3 su-exec tzdata composer certbot-nginx \
+         nginx openssl curl ca-certificates ffmpeg libressl libsmbclient libxml2 re2c python3 su-exec tzdata composer certbot certbot-nginx \
          mariadb mariadb-client mariadb-server-utils pwgen && \
          
     apk update && apk add --no-cache --virtual build-deps \ 
