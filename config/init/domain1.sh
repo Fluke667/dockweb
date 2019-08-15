@@ -1,3 +1,4 @@
+#!/bin/sh
 
 mkdir -p /etc/nginx/sites-available /etc/nginx/sites-enabled
 
@@ -152,3 +153,6 @@ server {
     }
 }
 EOF
+
+
+"$@"
