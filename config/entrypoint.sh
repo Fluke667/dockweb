@@ -9,22 +9,25 @@ sh /config/init/php7.sh &
 
 
  
- if [ -z "${CERTBOT_EMAIL}" ]; then
+ if [ -z "${HOST_EMAIL}" ]; then
     DockLog "ERROR: administrator email is mandatory"
-  elif [ -z "${CERTBOT_DOMAINS}" ]; then
+  elif [ -z "${HOST_DOMAINS}" ]; then
     DockLog "ERROR: at least one domain must be specified"
   else
-    exec certbot certonly --verbose --noninteractive --quiet --standalone --agree-tos --email="${CERTBOT_EMAIL}" -d "${CERTBOT_DOMAINS}"
+    exec /usr/bin/certbot certonly --verbose --noninteractive --quiet --standalone --agree-tos --email="${HOST_EMAIL}" -d "${HOST_DOMAINS}"
   fi
 elif [ "${1}" == 'certbot-renew' ]; then
-   exec certbot renew
+   exec /usr/bin/certbot renew
 else
 
 
 
 
 #mysql -uroot -p"$MYSQL_ROOT_PASSWORD" test_docker -e "INSERT INTO users(username, name) VALUES ('admin', 'Admin')"
-/usr/bin/mysqld --user=mysql --console --skip-name-resolve --skip-networking=0 
+/usr/bin/mysqld --user=mysql --console --skip-name-resolve --skip-networking=0 &
+/usr/sbin/php-fpm7 -c /etc/php7/php.ini -y /etc/php7/php7-fpm.conf &
+/usr/sbin/nginx
+
 
 
   "$@"
