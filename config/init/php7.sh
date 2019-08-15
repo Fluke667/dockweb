@@ -2026,7 +2026,7 @@ ldap.max_links = -1
 ; End:
 EOF
 
-cat >/etc/php7/php7-fpm.conf<<EOF
+cat >/etc/php7/php-fpm.conf<<EOF
 ;;;;;;;;;;;;;;;;;;;;;
 ; FPM Configuration ;
 ;;;;;;;;;;;;;;;;;;;;;
@@ -2172,7 +2172,7 @@ log_level = debug
 include=/etc/php7/php-fpm.d/*.conf
 EOF
 
-cat >/etc/php7/php7-fpm.d/www.conf<<EOF
+cat >/etc/php7/php-fpm.d/www.conf<<EOF
 ; Start a new pool named 'www'.
 ; the variable $pool can be used in any directive and will be replaced by the
 ; pool name ('www' here)
