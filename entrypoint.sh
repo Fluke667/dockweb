@@ -1,10 +1,10 @@
 #!/bin/bash
 
 
-cd /config && chmod u+x * -R &
-sh /config/init/mariadb.sh &
-sh /config/init/nginx.sh &
-sh /config/init/php7.sh &
+#cd /config && chmod u+x * -R &
+#sh /config/init/mariadb.sh &
+#sh /config/init/nginx.sh &
+#sh /config/init/php7.sh &
 #cp /config/etc/php7/php.ini /etc/php7/php.ini &
 
 
