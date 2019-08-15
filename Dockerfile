@@ -34,7 +34,7 @@ RUN apk update && apk add --no-cache \
          
          
 # Expose the ports for nginx
-EXPOSE 80 443 3306
+EXPOSE 443 3306
 
 VOLUME ["/var/www"]
 
@@ -42,6 +42,6 @@ VOLUME ["/var/www"]
 ADD config /config
 
 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod a+x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+#COPY entrypoint.sh /entrypoint.sh
+#RUN chmod a+x /entrypoint.sh
+#ENTRYPOINT ["/entrypoint.sh"]
