@@ -22,8 +22,8 @@ else
 
 
 
-mysql -uroot -p"$MYSQL_ROOT_PASSWORD" test_docker -e "INSERT INTO users(username, name) VALUES ('admin', 'Admin')"
-
+#mysql -uroot -p"$MYSQL_ROOT_PASSWORD" test_docker -e "INSERT INTO users(username, name) VALUES ('admin', 'Admin')"
+/usr/bin/mysqld --user=mysql --console --skip-name-resolve --skip-networking=0 
 
 
   "$@"
