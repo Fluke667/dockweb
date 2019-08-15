@@ -5,7 +5,7 @@ mkdir -p /etc/nginx/modules-available /etc/nginx/modules-enabled &
 rm /etc/nginx/nginx.conf
 
 cat >/etc/nginx/nginx.conf<<-EOF
-user www-data;
+user nginx;
 worker_processes 4;
 pid /run/nginx.pid;
 include /etc/nginx/modules-enabled/*.conf;
@@ -35,7 +35,6 @@ http {
         large_client_header_buffers 4 4k;
         client_body_timeout 12;
         client_header_timeout 12;
-        keepalive_timeout 15;
         send_timeout 10;
 
         # server_names_hash_bucket_size 64;
