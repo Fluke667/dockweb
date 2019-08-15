@@ -41,8 +41,8 @@ EXPOSE 3306
 VOLUME ["/var/www"]
 
 
-#ADD config /config
+ADD config /config
 
-#COPY entrypoint.sh /entrypoint.sh
-#RUN chmod a+x /entrypoint.sh
-#ENTRYPOINT [ "/entrypoint.sh" ]
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod a+x /entrypoint.sh
+ENTRYPOINT [ "/entrypoint.sh" ]
