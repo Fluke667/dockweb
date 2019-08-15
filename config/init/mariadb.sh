@@ -97,4 +97,5 @@ EOF
 fi
 
 
-exec /usr/bin/mysqld --user=mysql --console --skip-name-resolve --skip-networking=0 "$@"
+#exec /usr/bin/mysqld --user=mysql --console --skip-name-resolve --skip-networking=0 
+"$@"
