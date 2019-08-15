@@ -39,11 +39,11 @@ EXPOSE 80 443
 EXPOSE 3306
 
 
-VOLUME ["/var/www/nextcloud"]
+#VOLUME ["/var/www/nextcloud"]
 
 
-ADD config /config
+#ADD config /config
 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod a+x /entrypoint.sh
-ENTRYPOINT [ "/entrypoint.sh" ]
+#COPY entrypoint.sh /entrypoint.sh
+#RUN chmod a+x /entrypoint.sh
+#ENTRYPOINT [ "/entrypoint.sh" ]
