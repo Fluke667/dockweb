@@ -14,7 +14,7 @@ cp /config/etc/php7/php.ini /etc/php7/php.ini &
   elif [ -z "${DOCKDOMAINS}" ]; then
     DockLog "ERROR: at least one domain must be specified"
   else
-    exec certbot certonly --verbose --noninteractive --quiet --standalone --agree-tos --email="${DOCKMAIL}" -d "${DOCKDOMAINS}" 
+    exec certbot certonly --verbose --noninteractive --quiet --standalone --agree-tos --email="${CERTBOT_EMAIL}" -d "${CERTBOT_DOMAINS}" 
   fi
 elif [ "${1}" == 'certbot-renew' ]; then
    exec certbot renew
