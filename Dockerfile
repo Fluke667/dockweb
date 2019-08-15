@@ -24,7 +24,7 @@ RUN apk update && apk add --no-cache \
          pecl install smbclient && \
          mkdir -p /var/www/nextcloud /var/run/php && \
          cd /tmp && wget ${NEXTCLOUD_DL}.tar.bz2 && \
-         tar -xjf latest.tar.bz2 && cd nextcloud && cp * /var/www/nextcloud && \
+         tar -xjf latest.tar.bz2 && cd nextcloud && cp -r * /var/www/nextcloud && \
          #mkdir -p /var/lib/nginx /var/log/nginx /var/log/php7 && \
          chown -R nginx /var/lib/nginx /var/log/nginx /var/log/php7 /var/www/nextcloud /var/www && \
          apk del build-deps
