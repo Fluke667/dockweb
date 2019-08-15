@@ -83,7 +83,23 @@ EOF
 		echo "GRANT ALL ON \`$DB_DATABASE\`.* to '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS';" >> $tfile
 	    fi
 	fi
+	########
+		if [ "$NEXTCLOUD_DB_DATABASE" != "" ]; then
+	    echo "[i] Creating database: $NEXTCLOUD_DB_DATABASE"
+		if [ "$MARIADB_CHARSET" != "" ] && [ "$MARIADB_COLLATION" != "" ]; then
+			echo "[i] with character set [$MARIADB_CHARSET] and collation [$MARIADB_COLLATION]"
+			echo "CREATE DATABASE IF NOT EXISTS \`$NEXTCLOUD_DB_DATABASE\` CHARACTER SET $MARIADB_CHARSET COLLATE $MARIADB_COLLATION;" >> $tfile
+		else
+			echo "[i] with character set: 'utf8' and collation: 'utf8_general_ci'"
+			echo "CREATE DATABASE IF NOT EXISTS \`$NEXTCLOUD_DB_DATABASE\` CHARACTER SET utf8 COLLATE utf8_general_ci;" >> $tfile
+		fi
 
+	 if [ "$NEXTCLOUD_DB_USER" != "" ]; then
+		echo "[i] Creating user: $NEXTCLOUD_DB_USER with password $NEXTCLOUD_DB_PASS"
+		echo "GRANT ALL ON \`$NEXTCLOUD_DB_DATABASE\`.* to 'NEXTCLOUD_DB_USER'@'%' IDENTIFIED BY '$NEXTCLOUD_DB_PASS';" >> $tfile
+	    fi
+	fi
+	##########
 	/usr/bin/mysqld --user=mysql --bootstrap --verbose=0 --skip-name-resolve --skip-networking=0 < $tfile
 	rm -f $tfile
 
