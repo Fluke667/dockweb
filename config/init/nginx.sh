@@ -110,8 +110,8 @@ EOF
 
 cat >/etc/nginx/domain.com.conf<<-EOF
 upstream php-handler {
-    server 127.0.0.1:9000;
-    #server unix:/var/run/php/php7.2-fpm.sock;
+    #server 127.0.0.1:9000;
+    server unix:/var/run/php/php7.2-fpm.sock;
 }
 
 server {
