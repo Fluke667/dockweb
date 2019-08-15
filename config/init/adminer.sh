@@ -10,7 +10,7 @@ cat >/etc/nginx/sites-available/adminer.conf<<-EOF
 server {
 
     # Listen on port 80
-    listen 80;
+    listen 81;
 
     # Server name being used (exact name, wildcards or regular expression)
     # server_name adminer.my;
