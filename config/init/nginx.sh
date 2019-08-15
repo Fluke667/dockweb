@@ -1,5 +1,7 @@
 #!/bin/sh
 
+mkdir -p /etc/nginx/modules-available /etc/nginx/modules-enabled &
+
 rm /etc/nginx/nginx.conf &
 
 cat >/etc/nginx/nginx.conf<<-EOF
