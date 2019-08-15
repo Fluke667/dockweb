@@ -34,9 +34,7 @@ RUN apk update && apk add --no-cache \
          
          
 # Expose the ports for nginx
-EXPOSE 80 443
-# MariaDB port
-EXPOSE 3306
+EXPOSE 80 443 3306
 
 VOLUME ["/var/www"]
 
@@ -44,6 +42,6 @@ VOLUME ["/var/www"]
 ADD config /config
 
 
-COPY entrypoint.sh /usr/bin/
-RUN chmod a+x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
+#COPY entrypoint.sh /usr/bin/
+#RUN chmod a+x /usr/bin/entrypoint.sh
+#ENTRYPOINT ["entrypoint.sh"]
