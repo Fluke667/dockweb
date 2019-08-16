@@ -28,7 +28,7 @@ EOF
 
 
 cat >/etc/nginx/nginx.conf<<-EOF
-user nginx;
+user www-data;
 worker_processes 4;
 pid /run/nginx.pid;
 include /etc/nginx/modules/*.conf;
