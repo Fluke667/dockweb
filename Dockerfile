@@ -31,7 +31,7 @@ RUN apk update && apk add --no-cache \
          
          
 # Expose the ports for nginx
-EXPOSE 8080 81 443 3306
+EXPOSE 8080 80 81 443 3306
 
 VOLUME ["/var/www"]
 
