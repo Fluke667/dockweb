@@ -56,4 +56,11 @@ server {
         }
   }
 EOF
+
+
+        echo
+        echo 'Domains Setup done. Ready for start up.'
+        echo
+
+
 "$@"
