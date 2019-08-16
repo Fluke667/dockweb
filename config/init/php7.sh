@@ -2560,4 +2560,9 @@ EOF
 
 
 
+        echo
+        echo 'PHP-FPM-7.2 init process done. Ready for start up.'
+        echo
+
+
 "$@"
