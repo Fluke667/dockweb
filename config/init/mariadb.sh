@@ -25,6 +25,12 @@ max_user_connections=50
 wait_timeout=50
 interactive_timeout=50
 long_query_time=5
+#
+require_secure_transport = on
+ssl-cert = /etc/letsencrypt/live/$HOST_DOMAIN1/fullchain.pem
+ssl-key = /etc/letsencrypt/live/$HOST_DOMAIN1/privkey.pem
+ssl-cipher = ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
+tls_version = TLSv1.2,TLSv1.3
 
 # Disabling symbolic-links is recommended to prevent assorted security risks
 symbolic-links=0
