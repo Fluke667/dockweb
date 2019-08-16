@@ -1,7 +1,12 @@
 #!/bin/sh
 
-mkdir -p /etc/nginx/modules-available /etc/nginx/modules-enabled &
+cat >/etc/nginx/modules/http_geoip2.conf<<-EOF
+load_module "modules/ngx_http_geoip2_module.so";
+EOF
 
+cat >/etc/nginx/modules/stream_geoip2.conf<<-EOF
+load_module "modules/ngx_stream_geoip2_module.so";
+EOF
 
 
 cat >/etc/nginx/nginx.conf<<-EOF
