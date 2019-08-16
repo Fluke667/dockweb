@@ -1,5 +1,23 @@
 #!/bin/sh
 
+mkdir -p /etc/nginx/snippets
+
+cat >/etc/nginx/snippets/fastcgi-php.conf<<-EOF
+# regex to split $uri to $fastcgi_script_name and $fastcgi_path
+fastcgi_split_path_info ^(.+\.php)(/.+)$;
+
+# Check that the PHP script exists before passing it
+try_files $fastcgi_script_name =404;
+
+# Bypass the fact that try_files resets $fastcgi_path_info
+# see: http://trac.nginx.org/nginx/ticket/321
+set $path_info $fastcgi_path_info;
+fastcgi_param PATH_INFO $path_info;
+
+fastcgi_index index.php;
+include fastcgi.conf;
+EOF
+
 cat >/etc/nginx/modules/http_geoip2.conf<<-EOF
 load_module "modules/ngx_http_geoip2_module.so";
 EOF
