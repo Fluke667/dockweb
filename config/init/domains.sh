@@ -5,8 +5,8 @@ mkdir -p /etc/nginx/sites-available /etc/nginx/sites-enabled
 
 cat >/etc/nginx/sites-enabled/default<<-EOF
 server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
+        listen 8080 default_server;
+        listen [::]:8080 default_server;
         root /var/www;
         index index.php index.html index.htm index.py;
         server_name _;
@@ -47,8 +47,8 @@ upstream php-handler {
 }
 
 server {
-    listen 80;
-    listen [::]:80;
+    listen 8080;
+    listen [::]:8080;
     server_name ${HOST_DOMAIN1};
     # enforce https
     return 301 https://$server_name:443$request_uri;
