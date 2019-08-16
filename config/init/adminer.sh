@@ -1,9 +1,7 @@
 #!/bin/sh
 
 mkdir /var/www/adminer /var/log/adminer /etc/nginx/modules-available /etc/nginx/modules-enabled &
-cd /tmp &
-wget https://github.com/vrana/adminer/releases/download/v4.7.2/adminer-4.7.2.php &
-cp adminer-4.7.2.php /var/www/adminer &
+wget -P/var/www/adminer https://github.com/vrana/adminer/releases/download/v4.7.2/adminer-4.7.2.php &
 chown -R nginx /var/www/adminer
 
 
