@@ -5,8 +5,8 @@ mkdir -p /etc/nginx/sites-available /etc/nginx/sites-enabled
 
 cat >/etc/nginx/sites-enabled/default<<-EOF
 server {
-        listen 8080 default_server;
-        listen [::]:8080 default_server;
+        listen 80 default_server;
+        listen [::]:80 default_server;
         root /var/www;
         index index.php index.html index.htm index.py;
         server_name _;
@@ -14,7 +14,7 @@ server {
                 try_files $uri $uri/ =404;
         }
         location ~ \.php$ {
-                include snippets/fastcgi-php.conf;
+                include fastcgi.conf;
                 fastcgi_pass unix:/run/php/php7.2-fpm.sock;
         }
 }
@@ -42,8 +42,8 @@ EOF
 
 cat >/etc/nginx/sites-enabled/${HOST_DOMAIN1}.conf<<EOF
 server {
-        listen 8080;
-        listen [::]:8080;
+        listen 80;
+        listen [::]:80;
         server_name ${HOST_DOMAIN1};
         root /var/www/nextcloud;
         index index.php index.html index.htm index.py;
