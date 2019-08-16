@@ -15,7 +15,7 @@ RUN apk update && apk add --no-cache \
          nginx-mod-stream nginx-mod-stream-geoip nginx-mod-http-cache-purge nginx-mod-http-shibboleth nginx-mod-http-upstream-fair \
          nginx-mod-http-vod nginx-mod-devel-kit \
          nginx openssl curl ca-certificates ffmpeg libressl libsmbclient libxml2 re2c python3 su-exec tzdata composer certbot \
-         certbot-nginx mariadb mariadb-client mariadb-server-utils pwgen bash nano && \
+         certbot-nginx mariadb mariadb-client mariadb-server-utils pwgen bash nano rakudo zef && \
          
     apk update && apk add --no-cache --virtual build-deps \ 
          gd-dev geoip-dev libmaxminddb-dev libxml2-dev libxslt-dev linux-headers openssl-dev paxmark pcre-dev perl-dev pkgconf \
