@@ -17,7 +17,7 @@ openssl genrsa -out ${CA_CRT}.key 2048
 echo " ---> Generate Root CA certificate request"
 openssl req -new -key ${CA_CRT}.key -out ${CA_CRT}.csr -subj $CA_CRT_SUBJ
 echo " ---> Generate self-signed Root CA certificate"
-openssl req -x509 -key ${CA_CRT}.key -in ${CA_CRT}.csr -out ${CRT_CA}.crt -days 3560
+openssl req -x509 -key ${CA_CRT}.key -in ${CA_CRT}.csr -out ${CA_CRT}.crt -days 3560
 openssl req -x509 -key ${CA_CRT}.key -in ${CA_CRT}.csr -out ${CA_CRT}.pem -days 3560
 else
   echo "ENTRYPOINT: $CA_CRT.crt already exists"
