@@ -24,8 +24,8 @@ server {
     # Use Mozilla's guidelines for SSL/TLS settings
     # https://mozilla.github.io/server-side-tls/ssl-config-generator/
     # NOTE: some settings below might be redundant
-    ssl_certificate /etc/ssl/nginx/${HOST_DOMAIN1}.crt;
-    ssl_certificate_key /etc/ssl/nginx/${HOST_DOMAIN1}.key;
+    ssl_certificate /etc/ssl/certs/self.crt;
+    ssl_certificate_key /etc/ssl/certs/self.key;
 
     # Add headers to serve security related headers
     # Before enabling Strict-Transport-Security headers please read into this
