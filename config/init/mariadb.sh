@@ -157,9 +157,6 @@ EOF
 	echo 'MySQL init process done. Ready for start up.'
 	echo
 
-	echo "exec /usr/bin/mysqld --user=mysql --console --skip-name-resolve --skip-networking=0" "$@"
 fi
 
-
-#exec /usr/bin/mysqld --user=mysql --console --skip-name-resolve --skip-networking=0 
 "$@"
