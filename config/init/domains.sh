@@ -45,11 +45,10 @@ server {
         listen 8080;
         listen [::]:8080;
         server_name ${HOST_DOMAIN1};
-        root /var/www/${HOST_DOMAIN1};
+        root /var/www/nextcloud;
         index index.php index.html index.htm index.py;
         autoindex on;
         charset utf-8;
-        server_name ${HOST_DOMAIN1}; www.${HOST_DOMAIN1};
 
         location / {
                 try_files $uri $uri/ =404;
