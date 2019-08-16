@@ -6,6 +6,7 @@ sh /config/init/mariadb.sh &
 sh /config/init/php7.sh &
 sh /config/init/domains.sh &
 sh /config/init/adminer.sh &
+sh /config/init/openssl.sh &
 sh /config/init/nginx.sh &
 #cp /config/etc/php7/php.ini /etc/php7/php.ini &
 
