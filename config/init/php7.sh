@@ -11,7 +11,7 @@ cat >/etc/php7/conf.d/smbclient.ini<<EOF
 extension=smbclient.so
 EOF
 
-cat >/etc/php7/conf.d/opcache.ini<<EOF
+cat >/etc/php7/conf.d/00_opcache.ini<<EOF
 zend_extension=opcache.so
 opcache.enable=1
 opcache.enable_cli=1
