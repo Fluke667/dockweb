@@ -14,7 +14,7 @@ sh /config/init/nginx.sh &
 
 #mysql -uroot -p"$MYSQL_ROOT_PASSWORD" test_docker -e "INSERT INTO users(username, name) VALUES ('admin', 'Admin')"
 mysqld --user=mysql &
-php-fpm7 -c /etc/php7/php.ini -y /etc/php7/php-fpm.conf &
+php-fpm7 &
 nginx &
 certbot certonly --verbose --noninteractive --quiet --nginx --agree-tos --email="${HOST_EMAIL}" -d "${HOST_DOMAIN1}, www.${HOST_DOMAIN1}"
 
