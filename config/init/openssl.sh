@@ -1,10 +1,10 @@
 #!/bin/sh
 
-ENV CA_CRT=/etc/ssl/certs/ca \
-CA_CRT_SUBJ="/C=DE/ST=Bavaria/L=Nuremberg/O=CA" \
-CRT_SELF=/etc/ssl/certs/self \
-CRT_SELF_SUBJ="/C=DE/ST=Bavaria/L=Nuremberg/O=Server/CN=client" \
-CRT_SELF_EXT=/etc/ssl/self.ext
+export CA_CRT=/etc/ssl/certs/ca
+export CA_CRT_SUBJ="/C=DE/ST=Bavaria/L=Nuremberg/O=CA"
+export CRT_SELF=/etc/ssl/certs/self
+export CRT_SELF_SUBJ="/C=DE/ST=Bavaria/L=Nuremberg/O=Server/CN=client"
+export CRT_SELF_EXT=/etc/ssl/self.ext
 
 echo basicConstraints = CA:FALSE >> ${CRT_SELF_EXT}
 echo subjectKeyIdentifier=hash >> ${CRT_SELF_EXT}
