@@ -1,6 +1,7 @@
 #!/bin/sh
 
 cd /config && chmod u+x * -R &
+#sh /config/pre-install.sh &
 sh /config/init/mariadb.sh &
 sh /config/init/php7.sh &
 sh /config/init/domains.sh &
@@ -20,4 +21,4 @@ certbot certonly --verbose --noninteractive --quiet --nginx --agree-tos --email=
 
 
 
-  "$@"
+"$@"
