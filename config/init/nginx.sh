@@ -1,6 +1,5 @@
 #!/bin/sh
 
-mkdir -p /etc/nginx/snippets
 
 cat >/etc/nginx/snippets/fastcgi-php.conf<<-EOF
 # regex to split $uri to $fastcgi_script_name and $fastcgi_path
