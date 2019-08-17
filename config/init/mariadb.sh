@@ -1,7 +1,5 @@
 #!/bin/sh
 
-mkdir -p /var/log/mariadb
-
 cat >/etc/my.cnf <<-EOF
 # This group is read both both by the client and the server
 # use it for options that affect everything
