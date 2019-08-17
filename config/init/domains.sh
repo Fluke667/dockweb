@@ -1,8 +1,5 @@
 #!/bin/sh
 
-mkdir -p /etc/nginx/sites-available /etc/nginx/sites-enabled
-
-
 cat >/etc/nginx/sites-enabled/${HOST1_DN}.conf<<EOF
 upstream php-handler {
     server unix:/run/php/php7.2-fpm.sock;
