@@ -157,9 +157,9 @@ EOF
 
 
 
-	echo
-	echo 'MySQL init process done. Ready for start up.'
-	echo
+        echo
+        echo 'MariaDB init process done. Ready for init PHP-FPM 7.2'
+        echo
 
 fi
 
