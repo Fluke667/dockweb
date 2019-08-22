@@ -149,7 +149,7 @@ EOF
 
 
         echo
-        echo 'Domains Setup done. Ready for start up.'
+        echo 'Domain $HOST1_DN init done. Ready for init Nginx.'
         echo
 
 
