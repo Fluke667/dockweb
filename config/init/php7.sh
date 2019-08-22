@@ -333,7 +333,7 @@ serialize_precision = -1
 ; or per-virtualhost web server configuration file.
 ; Note: disables the realpath cache
 ; http://php.net/open-basedir
-;open_basedir =
+open_basedir=/dev/urandom
 
 ; This directive allows you to disable certain functions for security reasons.
 ; It receives a comma-delimited list of function names.
