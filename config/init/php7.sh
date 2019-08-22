@@ -1996,7 +1996,7 @@ cat >/etc/php7/php-fpm.conf<<EOF
 ; Pid file
 ; Note: the default prefix is /var
 ; Default Value: none
-pid = run/php-fpm7.pid
+pid = run/php7/php-fpm7.pid
 
 ; Error log file
 ; If it's set to "syslog", log is sent to syslogd instead of being written
@@ -2161,7 +2161,7 @@ group = nobody
 ;                            (IPv6 and IPv4-mapped) on a specific port;
 ;   '/path/to/unix/socket' - to listen on a unix socket.
 ; Note: This value is mandatory.
-listen = /run/php/php7.2-fpm.sock
+listen = /run/php7/php7.2-fpm.sock
 
 ; Set listen(2) backlog.
 ; Default Value: 511 (-1 on FreeBSD and OpenBSD)
@@ -2558,8 +2558,6 @@ pm.max_spare_servers = 3
 ;php_admin_value[memory_limit] = 32M
 EOF
 
-touch /run/php/php7.2-fpm.sock
-chown www-data:www-data /run/php/php7.2-fpm.sock
 
         echo
         echo 'PHP-FPM-7.2 init process done. Ready for init Domain Names.'
