@@ -38,6 +38,8 @@ if [ ! -d "/var/lib/nginx" ]; then
 mkdir -p /var/lib/nginx
 fi
 
+
+
 chown -R nginx:nginx /var/log/nginx &
 chown -R nginx:nginx /var/log/php7 &
 chown -R mysql:mysql /var/log/mariadb &
