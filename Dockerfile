@@ -30,7 +30,6 @@ RUN apk update && apk add --no-cache \
          pecl install smbclient && \
          apk del build-deps
          
-         
 # Expose the ports for nginx
 EXPOSE 8080 80 81 443 3306
 
