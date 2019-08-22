@@ -1,43 +1,74 @@
 #!/bin/sh
 
-cat >/etc/my.cnf <<-EOF
-# This group is read both both by the client and the server
-# use it for options that affect everything
-[client-server]
+cat >/etc/mysql/my.cnf <<-EOF
 
 # This group is read by the server
 [mysqld]
+datadir=/var/lib/mysql
+pid_file=/run/mysqld/mysqld.pid
+socket=/run/mysqld/mysqld.sock
 symbolic-links=0
 skip-external-locking
-key_buffer_size = 32K
-max_allowed_packet = 4M
-table_open_cache = 8
-sort_buffer_size = 128K
-read_buffer_size = 512K
-read_rnd_buffer_size = 512K
-net_buffer_length = 4K
-thread_stack = 480K
-innodb_file_per_table
+key_buffer_size=32K
+max_allowed_packet=4M
+table_open_cache=8
+sort_buffer_size=128K
+read_buffer_size=512K
+read_rnd_buffer_size=512K
+net_buffer_length=4K
+thread_stack=480K
+innodb_file_per_table=1
 max_connections=100
 max_user_connections=50
 wait_timeout=50
 interactive_timeout=50
 long_query_time=5
-pid_file=/run/mysqld/mysqld.pid
-socket=/run/mysqld/mysqld.sock
-#
+performance_schema=on
+innodb_stats_on_metadata=0
+transaction_isolation=READ-COMMITTED
+binlog_format=ROW
+character-set-server=utf8mb4
+collation-server=utf8mb4_general_ci
+innodb_large_prefix=on
+innodb_file_format=barracuda
+innodb_file_per_table=1
 #require_secure_transport = on
 #ssl-cert = /etc/letsencrypt/live/$HOST1_DN/fullchain.pem
 #ssl-key = /etc/letsencrypt/live/$HOST1_DN/privkey.pem
 #ssl-cipher = ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
 #tls_version = TLSv1.2,TLSv1.3
 
-# Disabling symbolic-links is recommended to prevent assorted security risks
-symbolic-links=0
 
-# include all files from the config directory
+[server]
+skip-name-resolve
+innodb_buffer_pool_size=128M
+innodb_buffer_pool_instances=1
+innodb_flush_log_at_trx_commit=2
+innodb_log_buffer_size=32M
+innodb_max_dirty_pages_pct=90
+query_cache_type=1
+query_cache_limit=2M
+query_cache_min_res_unit=2k
+query_cache_siz =64M
+tmp_table_size=64M
+max_heap_table_size=64M
+slow-query-log=1
+slow-query-log-file=/var/log/mariadb/slow.log
+long_query_time=1
+
+[client]
+default-character-set = utf8mb4
+
+# This group is read both both by the client and the server
+# use it for options that affect everything
+[client-server]
+!includedir /etc/mysql/conf.d/
+!includedir /etc/mysql/mariadb.conf.d/
 !includedir /etc/my.cnf.d
 EOF
+
+
+
 
 echo >/etc/my.cnf.d/mariadb-server.cnf<<EOF
 #
@@ -117,8 +148,8 @@ EOF
 			echo "[i] with character set [$MARIADB_CHARSET] and collation [$MARIADB_COLLATION]"
 			echo "CREATE DATABASE IF NOT EXISTS \`$DB_DATABASE\` CHARACTER SET $MARIADB_CHARSET COLLATE $MARIADB_COLLATION;" >> /etc/mysql/tfile
 		else
-			echo "[i] with character set: 'utf8' and collation: 'utf8_general_ci'"
-			echo "CREATE DATABASE IF NOT EXISTS \`$DB_DATABASE\` CHARACTER SET utf8 COLLATE utf8_general_ci;" >> /etc/mysql/tfile
+			echo "[i] with character set: 'utf8mb4' and collation: 'utf8mb4_general_ci'"
+			echo "CREATE DATABASE IF NOT EXISTS \`$DB_DATABASE\` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;" >> /etc/mysql/tfile
 		fi
 
 	 if [ "$DB_USER" != "" ]; then
@@ -133,8 +164,8 @@ EOF
 			echo "[i] with character set [$MARIADB_CHARSET] and collation [$MARIADB_COLLATION]"
 			echo "CREATE DATABASE IF NOT EXISTS \`$NEXTCLOUD_DB_DATABASE\` CHARACTER SET $MARIADB_CHARSET COLLATE $MARIADB_COLLATION;" >> /etc/mysql/tfile
 		else
-			echo "[i] with character set: 'utf8' and collation: 'utf8_general_ci'"
-			echo "CREATE DATABASE IF NOT EXISTS \`$NEXTCLOUD_DB_DATABASE\` CHARACTER SET utf8 COLLATE utf8_general_ci;" >> /etc/mysql/tfile
+			echo "[i] with character set: 'utf8mb4' and collation: 'utf8mb4_general_ci'"
+			echo "CREATE DATABASE IF NOT EXISTS \`$NEXTCLOUD_DB_DATABASE\` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;" >> /etc/mysql/tfile
 		fi
 
 	 if [ "$NEXTCLOUD_DB_USER" != "" ]; then
