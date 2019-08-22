@@ -86,21 +86,21 @@ EOF
 
 if [ -d "/run/mysqld" ]; then
 	echo "[i] mysqld already present, skipping creation"
-	chown -R mysql:mysql /run/mysqld
+	chown -R ${MARIADB_USR}:${MARIADB_GRP} /run/mysqld
 else
 	echo "[i] mysqld not found, creating...."
 	mkdir -p /run/mysqld
-	chown -R mysql:mysql /run/mysqld
+	chown -R ${MARIADB_USR}:${MARIADB_GRP} /run/mysqld
 fi
 
 
 if [ -d /var/lib/mysql/mysql ]; then
 	echo "[i] MySQL directory already present, skipping creation"
-	chown -R mysql:mysql /var/lib/mysql
+	chown -R ${MARIADB_USR}:${MARIADB_GRP} /var/lib/mysql
 else
 	echo "[i] MySQL data directory not found, creating initial DBs"
 
-	chown -R mysql:mysql /var/lib/mysql
+	chown -R ${MARIADB_USR}:${MARIADB_GRP} /var/lib/mysql
 
 	mysql_install_db --user=mysql --ldata=/var/lib/mysql > /dev/null
 
@@ -153,7 +153,7 @@ EOF
 	fi
 	##########
 	/usr/bin/mysqld --user=mysql --bootstrap --verbose=0 --skip-name-resolve --skip-networking=0 < /etc/mysql/tfile
-	#rm -f /etc/mysql/tfile
+	rm -f /etc/mysql/tfile
 
 
 
