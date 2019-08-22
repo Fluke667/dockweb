@@ -35,7 +35,6 @@ EXPOSE 8080 80 81 443 3306
 
 VOLUME ["/var/www"]
 
-
 ADD config /config
 
 
