@@ -46,7 +46,7 @@ server {
     fastcgi_hide_header X-Powered-By;
     
     # Path to the root of your installation
-    root /var/www/nextcloud;
+    root /var/www/$HOST1_DN;
     location = /robots.txt {
         allow all;
         log_not_found off;
