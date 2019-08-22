@@ -95,9 +95,9 @@ chown -R mysql:mysql /var/log/adminer &
 #addgroup -S php7-fpm 2>/dev/null 
 #adduser -S -D -H -h /var/lib/php7/fpm -s /sbin/nologin -G php7-fpm -g php7-fpm php7-fpm 2>/dev/null
 #addgroup nginx www-data 2>/dev/null
+addgroup -g 700 -S $NGINX_WWWGRP
+adduser -u 700 -D -S -h /var/www -s /sbin/nologin -G $NGINX_WWWUSR $NGINX_WWWGRP
 
-
-wget -P /var/www/$HOST2_DN/adminer https://github.com/vrana/adminer/releases/download/v4.7.2/adminer-4.7.2.php
 
 
 	echo 
