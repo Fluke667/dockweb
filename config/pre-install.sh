@@ -2,9 +2,13 @@
 
 echo "${INFO} ***** PREPARE DIRECTORYS AND FILES (MARIADB) *****"
 if [ -d "/run/mysqld" ]; then
+        touch /run/mysqld/mysqld.pid
+	touch /run/mysqld/mysqld.sock
 	chown -R ${MARIADB_USR}:${MARIADB_GRP} /run/mysqld
 else
 	mkdir -p /run/mysqld
+	touch /run/mysqld/mysqld.pid
+	touch /run/mysqld/mysqld.sock
 	chown -R ${MARIADB_USR}:${MARIADB_GRP} /run/mysqld
 fi
 
@@ -25,12 +29,13 @@ else
 fi
 
 if [ -d "/run/nginx" ]; then
+        touch /run/nginx/nginx.pid
         chown -R ${NGINX_WWWUSR}:${NGINX_WWWGRP} /run/nginx
 else
         mkdir -p /run/nginx
+	touch /run/nginx/nginx.pid
         chown -R ${NGINX_WWWUSR}:${NGINX_WWWGRP} /run/nginx
 fi
-
 
 echo "${INFO} ***** PREPARE DIRECTORYS AND FILES (PHP-FPM 7.2) *****"
 if [ -d "/var/log/php7" ]; then
@@ -41,12 +46,17 @@ else
 fi
 
 if [ -d "/run/php7" ]; then
+        touch /run/php7/php7.2-fpm.sock
+	touch /run/php7/php-fpm7.pid
         chown -R ${NGINX_WWWUSR}:${NGINX_WWWGRP} /run/php7
 else
         mkdir -p /run/php7
+	touch /run/php7/php7.2-fpm.sock
+	touch /run/php7/php-fpm7.pid
         chown -R ${NGINX_WWWUSR}:${NGINX_WWWGRP} /run/php7
 fi
 
+echo "${INFO} ***** PREPARE DIRECTORYS AND FILES (PHP-FPM 7.2) *****"
 
 
 
