@@ -3,8 +3,8 @@
 cat >/etc/php7/conf.d/apcu.ini<<-EOF
 extension=apcu.so
 apc.enabled=1
-apc.shm_size=128M
-apc.ttl=7200
+apc.shm_size=$APC_SHM_SIZE
+apc.ttl=$APC_TTL
 EOF
 
 cat >/etc/php7/conf.d/smbclient.ini<<EOF
@@ -15,9 +15,9 @@ cat >/etc/php7/conf.d/00_opcache.ini<<EOF
 zend_extension=opcache.so
 opcache.enable=1
 opcache.enable_cli=1
-opcache.interned_strings_buffer=8
-opcache.max_accelerated_files=10000
-opcache.memory_consumption=128
+opcache.interned_strings_buffer=$OPC_INT_STRINGS_BUFF
+opcache.max_accelerated_files=$OPC_MAX_ACC_FILES
+opcache.memory_consumption=$OPC_MEMORY
 opcache.save_comments=1
 opcache.revalidate_freq=1
 #opcache.fast_shutdown=1
