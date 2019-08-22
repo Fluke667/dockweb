@@ -40,5 +40,5 @@ ADD config /config
 
 
 #COPY entrypoint.sh /
-#RUN chmod a+x /entrypoint.sh
-#ENTRYPOINT ["/entrypoint.sh"]
+RUN chmod a+x /config/entrypoint.sh
+ENTRYPOINT ["/config/entrypoint.sh"]
