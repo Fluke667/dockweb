@@ -55,4 +55,9 @@ chown -R mysql:mysql /run/mysqld &
 wget -P /var/www/fluke667_host ${NEXTCLOUD_DL}.tar.bz2 && tar -xjf /var/www/fluke667_host/latest.tar.bz2 &
 wget -P /var/www/fluke667_me/adminer https://github.com/vrana/adminer/releases/download/v4.7.2/adminer-4.7.2.php
 
+
+	echo 
+	echo 'Pre-Install process done. Ready for init MariaDB.'   
+	echo
+
 "$@"
