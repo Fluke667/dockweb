@@ -120,7 +120,9 @@ http {
 #}
 EOF
 
-
+	echo 
+	echo 'Nginx init process done. Ready for init Nextcloud.'   
+	echo
 
 
 "$@"
