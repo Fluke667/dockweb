@@ -23,6 +23,8 @@ max_user_connections=50
 wait_timeout=50
 interactive_timeout=50
 long_query_time=5
+pid_file=/run/mysqld/mysqld.pid
+socket=/run/mysqld/mysqld.sock
 #
 #require_secure_transport = on
 #ssl-cert = /etc/letsencrypt/live/$HOST1_DN/fullchain.pem
