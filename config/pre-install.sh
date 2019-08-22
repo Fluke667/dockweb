@@ -40,13 +40,13 @@ fi
 
 
 
-chown -R nginx:nginx /var/log/nginx &
-chown -R nginx:nginx /var/log/php7 &
-chown -R mysql:mysql /var/log/mariadb &
+chown -R ${NGINX_WWWUSR}:${NGINX_WWWGRP} /var/log/nginx &
+chown -R ${NGINX_WWWUSR}:${NGINX_WWWGRP} /var/log/php7 &
 chown -R mysql:mysql /var/log/adminer &
-chown -R nginx:nginx /run/nginx &
-chown -R nginx:nginx /run/php &
-chown -R mysql:mysql /run/mysqld &
+chown -R ${NGINX_WWWUSR}:${NGINX_WWWGRP} /run/nginx &
+chown -R ${NGINX_WWWUSR}:${NGINX_WWWGRP} /run/php &
+chown -R ${MARIADB_USR}:${MARIADB_GRP} /var/log/mariadb &
+chown -R ${MARIADB_USR}:${MARIADB_GRP} /run/mysqld &
 
 #addgroup -S php7-fpm 2>/dev/null 
 #adduser -S -D -H -h /var/lib/php7/fpm -s /sbin/nologin -G php7-fpm -g php7-fpm php7-fpm 2>/dev/null
