@@ -83,17 +83,6 @@ log_error=/var/log/mariadb/error.log
 [mariadb-10.3]
 EOF
 
-
-if [ -d "/run/mysqld" ]; then
-	echo "[i] mysqld already present, skipping creation"
-	chown -R ${MARIADB_USR}:${MARIADB_GRP} /run/mysqld
-else
-	echo "[i] mysqld not found, creating...."
-	mkdir -p /run/mysqld
-	chown -R ${MARIADB_USR}:${MARIADB_GRP} /run/mysqld
-fi
-
-
 if [ -d /var/lib/mysql/mysql ]; then
 	echo "[i] MySQL directory already present, skipping creation"
 	chown -R ${MARIADB_USR}:${MARIADB_GRP} /var/lib/mysql
