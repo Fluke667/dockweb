@@ -15,11 +15,12 @@ cat >/etc/php7/conf.d/00_opcache.ini<<EOF
 zend_extension=opcache.so
 opcache.enable=1
 opcache.enable_cli=1
-opcache.fast_shutdown=1
-opcache.memory_consumption=128M
-opcache.interned_strings_buffer=16
+opcache.interned_strings_buffer=8
 opcache.max_accelerated_files=10000
-opcache.revalidate_freq=60
+opcache.memory_consumption=128
+opcache.save_comments=1
+opcache.revalidate_freq=1
+#opcache.fast_shutdown=1
 EOF
 
 
@@ -2238,22 +2239,22 @@ pm = dynamic
 ; forget to tweak pm.* to fit your needs.
 ; Note: Used when pm is set to 'static', 'dynamic' or 'ondemand'
 ; Note: This value is mandatory.
-pm.max_children = 5
+pm.max_children = 60
 
 ; The number of child processes created on startup.
 ; Note: Used only when pm is set to 'dynamic'
 ; Default Value: min_spare_servers + (max_spare_servers - min_spare_servers) / 2
-pm.start_servers = 2
+pm.start_servers = 6
 
 ; The desired minimum number of idle server processes.
 ; Note: Used only when pm is set to 'dynamic'
 ; Note: Mandatory when pm is set to 'dynamic'
-pm.min_spare_servers = 1
+pm.min_spare_servers = 3
 
 ; The desired maximum number of idle server processes.
 ; Note: Used only when pm is set to 'dynamic'
 ; Note: Mandatory when pm is set to 'dynamic'
-pm.max_spare_servers = 3
+pm.max_spare_servers = 9
 
 ; The number of seconds after which an idle process will be killed.
 ; Note: Used only when pm is set to 'ondemand'
