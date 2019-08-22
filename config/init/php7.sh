@@ -2562,7 +2562,7 @@ touch /run/php/php7.2-fpm.sock &
 chown nginx:nginx /run/php/php7.2-fpm.sock
 
         echo
-        echo 'PHP-FPM-7.2 init process done. Ready for start up.'
+        echo 'PHP-FPM-7.2 init process done. Ready for init Domain Names.'
         echo
 
 
