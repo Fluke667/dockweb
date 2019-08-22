@@ -24,14 +24,15 @@ wait_timeout=50
 interactive_timeout=50
 long_query_time=5
 performance_schema=on
-innodb_stats_on_metadata=0
 transaction_isolation=READ-COMMITTED
 binlog_format=ROW
 character-set-server=utf8mb4
 collation-server=utf8mb4_general_ci
-innodb_large_prefix=on
+innodb_file_per_table=1
 innodb_file_format=barracuda
 innodb_file_per_table=1
+innodb_large_prefix=on
+innodb_stats_on_metadata=0
 #require_secure_transport = on
 #ssl-cert = /etc/letsencrypt/live/$HOST1_DN/fullchain.pem
 #ssl-key = /etc/letsencrypt/live/$HOST1_DN/privkey.pem
@@ -41,11 +42,6 @@ innodb_file_per_table=1
 
 [server]
 skip-name-resolve
-innodb_buffer_pool_size=128M
-innodb_buffer_pool_instances=1
-innodb_flush_log_at_trx_commit=2
-innodb_log_buffer_size=32M
-innodb_max_dirty_pages_pct=90
 query_cache_type=1
 query_cache_limit=2M
 query_cache_min_res_unit=2k
@@ -55,6 +51,12 @@ max_heap_table_size=64M
 slow-query-log=1
 slow-query-log-file=/var/log/mariadb/slow.log
 long_query_time=1
+innodb_buffer_pool_size=128M
+innodb_buffer_pool_instances=1
+innodb_flush_log_at_trx_commit=2
+innodb_log_buffer_size=32M
+innodb_max_dirty_pages_pct=90
+
 
 [client]
 default-character-set = utf8mb4
