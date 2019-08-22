@@ -52,7 +52,7 @@ chown -R mysql:mysql /run/mysqld &
 #adduser -S -D -H -h /var/lib/php7/fpm -s /sbin/nologin -G php7-fpm -g php7-fpm php7-fpm 2>/dev/null
 #addgroup nginx www-data 2>/dev/null
 
-wget -P /var/www/$HOST1_DN ${NEXTCLOUD_DL}.tar.bz2 && tar -xjf /var/www/$HOST1_DN/latest.tar.bz2 &
+
 wget -P /var/www/$HOST2_DN/adminer https://github.com/vrana/adminer/releases/download/v4.7.2/adminer-4.7.2.php
 
 
