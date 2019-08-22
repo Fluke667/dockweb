@@ -409,7 +409,7 @@ expose_php = On
 ; Maximum execution time of each script, in seconds
 ; http://php.net/max-execution-time
 ; Note: This directive is hardcoded to 0 for the CLI SAPI
-max_execution_time = 30
+max_execution_time = $FPM_MAX_EXEC_TIME
 
 ; Maximum amount of time each script may spend parsing request data. It's a good
 ; idea to limit this time on productions servers in order to eliminate unexpectedly
@@ -426,11 +426,11 @@ max_input_time = 60
 ;max_input_nesting_level = 64
 
 ; How many GET/POST/COOKIE input variables may be accepted
-;max_input_vars = 1000
+;max_input_vars = $FPM_MAX_INPUT_VARS
 
 ; Maximum amount of memory a script may consume (128MB)
 ; http://php.net/memory-limit
-memory_limit = 128M
+memory_limit = $FPM_MEMORY_LIMIT
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Error handling and logging ;
@@ -718,7 +718,7 @@ auto_globals_jit = On
 ; Its value may be 0 to disable the limit. It is ignored if POST data reading
 ; is disabled through enable_post_data_reading.
 ; http://php.net/post-max-size
-post_max_size = 8M
+post_max_size = $FPM_POSTMAX_FSIZE
 
 ; Automatically add files before PHP document.
 ; http://php.net/auto-prepend-file
@@ -870,7 +870,7 @@ file_uploads = On
 
 ; Maximum allowed size for uploaded files.
 ; http://php.net/upload-max-filesize
-upload_max_filesize = 2M
+upload_max_filesize = $FPM_UPMAX_FILESIZE
 
 ; Maximum number of files that can be uploaded via a single request
 max_file_uploads = 20
@@ -885,7 +885,7 @@ allow_url_fopen = On
 
 ; Whether to allow include/require to open URLs (like http:// or ftp://) as files.
 ; http://php.net/allow-url-include
-allow_url_include = Off
+allow_url_include = $FPM_ALLOW_URL_INC
 
 ; Define the anonymous ftp password (your email address). PHP's default setting
 ; for this is empty.
@@ -988,7 +988,7 @@ cli_server.color = On
 [Date]
 ; Defines the default timezone used by the date functions
 ; http://php.net/date.timezone
-;date.timezone =
+date.timezone = $PHP_TIMEZONE
 
 ; http://php.net/date.default-latitude
 ;date.default_latitude = 31.7667
