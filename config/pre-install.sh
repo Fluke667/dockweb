@@ -13,11 +13,17 @@ else
 fi
 
 if [ -d "/var/log/mariadb" ]; then
-
         chown -R ${MARIADB_USR}:${MARIADB_GRP} /var/log/mariadb
 else
         mkdir -p /var/log/mariadb
         chown -R ${MARIADB_USR}:${MARIADB_GRP} /var/log/mariadb
+fi
+
+if [ -d "/etc/mysql" ]; then
+        chown -R ${MARIADB_USR}:${MARIADB_GRP} /etc/mysql
+else
+        mkdir -p /etc/mysql
+        chown -R ${MARIADB_USR}:${MARIADB_GRP} /etc/mysql
 fi
 
 echo "${INFO} ***** PREPARE DIRECTORYS AND FILES (NGINX) *****"
