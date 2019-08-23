@@ -1,10 +1,8 @@
 FROM fluke667/alpine-java AS javabuilder
+FROM fluke667/alpine-golang:latest AS gobuilder
 FROM fluke667/alpine
 #FROM node:alpine3.10 as node-builder
 #FROM nginx:alpine3.10 as web-builder
-#FROM golang:1.12-alpine3.10 as go-builder
-
-ENV PATH=$PATH:/opt/jdk/bin
 
 COPY --from=javabuilder /javarun /opt/jdk/
 
