@@ -1,5 +1,5 @@
 FROM fluke667/alpine
-FROM fluke667/alpine-java:latest AS java-builder
+FROM fluke667/alpine-java AS java-builder
 #FROM node:alpine3.10 as node-builder
 #FROM nginx:alpine3.10 as web-builder
 #FROM golang:1.12-alpine3.10 as go-builder
