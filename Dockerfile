@@ -1,12 +1,12 @@
+FROM fluke667/alpine-java AS javabuilder
 FROM fluke667/alpine
-FROM fluke667/alpine-java AS java-builder
 #FROM node:alpine3.10 as node-builder
 #FROM nginx:alpine3.10 as web-builder
 #FROM golang:1.12-alpine3.10 as go-builder
 
 ENV PATH=$PATH:/opt/jdk/bin
 
-COPY --from=java-builder /javarun /opt/jdk/
+COPY --from=javabuilder /javarun /opt/jdk/
 
 RUN apk update && apk add --no-cache \ 
          php7-pecl-mcrypt php7-pecl-ssh2 php7-pecl-igbinary php7-pear php7-fpm php7-bcmath php7-ctype php7-curl php7-dom php7-exif \
