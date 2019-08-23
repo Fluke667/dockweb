@@ -1,4 +1,4 @@
-FROM fluke667/alpine:latest
+FROM fluke667/alpine
 FROM fluke667/alpine-java:latest AS java-builder
 #FROM node:alpine3.10 as node-builder
 #FROM nginx:alpine3.10 as web-builder
