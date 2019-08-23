@@ -1,7 +1,12 @@
-FROM fluke667/alpine
+FROM fluke667/alpine:latest
+FROM fluke667/alpine-java:latest AS java-builder
 #FROM node:alpine3.10 as node-builder
 #FROM nginx:alpine3.10 as web-builder
 #FROM golang:1.12-alpine3.10 as go-builder
+
+ENV PATH=$PATH:/opt/jdk/bin
+
+COPY --from=java-builder /javarun /opt/jdk/
 
 RUN apk update && apk add --no-cache \ 
          php7-pecl-mcrypt php7-pecl-ssh2 php7-pecl-igbinary php7-pear php7-fpm php7-bcmath php7-ctype php7-curl php7-dom php7-exif \
@@ -26,8 +31,8 @@ RUN apk update && apk add --no-cache \
          
          pip3 install --upgrade pip && \
          pear config-set php_ini /etc/php7/php.ini && \
-         pear install channel://pear.php.net/HTML_Template_IT-1.3.1 \
-                      channel://pear.php.net/PEAR_Frontend_Web-0.7.5
+         #pear install channel://pear.php.net/HTML_Template_IT-1.3.1 \
+         #pear install channel://pear.php.net/PEAR_Frontend_Web-0.7.5 && \
          pecl config-set php_ini /etc/php7/php.ini && \
          pecl install smbclient && \
          apk del build-deps
