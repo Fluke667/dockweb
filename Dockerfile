@@ -28,7 +28,7 @@ RUN apk update && apk add --no-cache \
          libtool php7-dev samba-dev tar wget freetype-dev icu-dev libevent-dev libjpeg-turbo-dev libmcrypt-dev libpng-dev \
          libmemcached-dev libzip-dev openldap-dev imagemagick-dev libwebp-dev && \
          
-         pip3 install --upgrade pip && \
+         pip3 install --upgrade pip gixy && \
          pear config-set php_ini /etc/php7/php.ini && \
          #pear install channel://pear.php.net/HTML_Template_IT-1.3.1 \
          #pear install channel://pear.php.net/PEAR_Frontend_Web-0.7.5 && \
