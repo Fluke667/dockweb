@@ -45,6 +45,11 @@ server {
     # Remove X-Powered-By, which is an information leak
     fastcgi_hide_header X-Powered-By;
     
+    # Python
+	location / {
+		include python_uwsgi.conf;
+	}
+    
     # Path to the root of your installation
     root /var/www/$HOST1_DN;
     location = /robots.txt {
