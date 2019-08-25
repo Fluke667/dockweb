@@ -49,6 +49,15 @@ server {
 	location / {
 		include python_uwsgi.conf;
 	}
+    # Django media
+	location /media/ {
+		alias $base/media/;
+	}
+
+    # Django static
+	location /static/ {
+		alias $base/static/;
+	}
     
     # Path to the root of your installation
     root /var/www/$HOST1_DN;
