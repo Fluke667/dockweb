@@ -20,7 +20,7 @@ RUN apk update && apk add --no-cache \
          nginx openssl curl ca-certificates ffmpeg libressl libsmbclient libxml2 re2c python3 su-exec tzdata composer certbot \
          certbot-nginx mariadb mariadb-client mariadb-server-utils mariadb-mytop pwgen bash nano \
          #rakudo zef \
-         busybox busybox-extras busybox-initscripts gettext shadow uwsgi uwsgi-python3 && \
+         busybox busybox-extras busybox-initscripts gettext shadow uwsgi uwsgi-python3 lua5.3 lua5.3-dev luarocks5.3 && \
          
     apk update && apk add --no-cache --virtual build-deps \ 
          gd-dev geoip-dev libmaxminddb-dev libxml2-dev libxslt-dev linux-headers openssl-dev paxmark pcre-dev perl-dev pkgconf \
