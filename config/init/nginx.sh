@@ -125,7 +125,7 @@ cat >/etc/nginx/python_uwsgi.conf<<-EOF
 include uwsgi_params;
 
 # uwsgi settings
-uwsgi_pass				unix:/tmp/uwsgi.sock;
+uwsgi_pass				unix:/run/uwsgi/uwsgi.sock;
 uwsgi_param Host			$host;
 uwsgi_param X-Real-IP			$remote_addr;
 uwsgi_param X-Forwarded-For		$proxy_add_x_forwarded_for;
