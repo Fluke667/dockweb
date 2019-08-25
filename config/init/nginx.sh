@@ -120,6 +120,18 @@ http {
 #}
 EOF
 
+cat >/etc/nginx/python_uwsgi.conf<<-EOF
+# default uwsgi_params
+include uwsgi_params;
+
+# uwsgi settings
+uwsgi_pass				unix:/tmp/uwsgi.sock;
+uwsgi_param Host			$host;
+uwsgi_param X-Real-IP			$remote_addr;
+uwsgi_param X-Forwarded-For		$proxy_add_x_forwarded_for;
+uwsgi_param X-Forwarded-Proto	        $http_x_forwarded_proto;
+EOF
+
 	echo 
 	echo 'Nginx init process done. Ready for init Nextcloud.'   
 	echo
