@@ -17,7 +17,7 @@ sh /config/init/nextcloud.sh &
 #php-fpm7 &
 #nginx &
 #certbot certonly --verbose --noninteractive --quiet --nginx --agree-tos --email="${HOST_EMAIL}" -d "${HOST_DOMAIN1}, www.${HOST_DOMAIN1}"
-
+#uwsgi --http :8000 --wsgi-file test.py
 
 
 "$@"
