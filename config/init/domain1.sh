@@ -58,7 +58,6 @@ server {
 
     # set max upload size
     client_max_body_size 512M;
-    fastcgi_buffers 64 4K;
     
     # Extra Configuration File 
     include config/extra.conf;
