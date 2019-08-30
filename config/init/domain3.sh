@@ -9,6 +9,9 @@ server {
     listen 80 default_server;
     listen [::]:80 default_server;
     server_name $HOST3_DN;
+    
+    include config/letsencrypt.conf;
+    
     autoindex on;
     return 301 https://$host$request_uri;
 }
