@@ -120,7 +120,7 @@ http {
 #}
 EOF
 
-cat >/etc/nginx/python_uwsgi.conf<<-EOF
+cat >/etc/nginx/config/python_uwsgi.conf<<-EOF
 # default uwsgi_params
 include uwsgi_params;
 
