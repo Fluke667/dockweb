@@ -105,9 +105,9 @@ fi
 #addgroup -S php7-fpm 2>/dev/null 
 #adduser -S -D -H -h /var/lib/php7/fpm -s /sbin/nologin -G php7-fpm -g php7-fpm php7-fpm 2>/dev/null
 #addgroup nginx www-data 2>/dev/null
-addgroup -g 700 -S $NGINX_WWWGRP &
-adduser -u 700 -D -S -h /var/www -s /sbin/nologin -G $NGINX_WWWUSR $NGINX_WWWGRP &
+addgroup -g 1010 -S $NGINX_WWWGRP && adduser -u 1010 -D -S -h /var/www -s /sbin/nologin -G $NGINX_WWWUSR $NGINX_WWWGRP &
 useradd -m -s /bin/bash  -U  dockweb &
+addgroup -g 1011 node && adduser -u 1011 -G node -s /bin/bash -D node &
 
 chown -R mysql:mysql /var/log/adminer &
 chown -R www-data:www-data /var/www/_letsencrypt 
