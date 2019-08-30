@@ -107,6 +107,7 @@ fi
 #addgroup nginx www-data 2>/dev/null
 addgroup -g 700 -S $NGINX_WWWGRP &
 adduser -u 700 -D -S -h /var/www -s /sbin/nologin -G $NGINX_WWWUSR $NGINX_WWWGRP &
+useradd -m -s /bin/bash  -U  dockweb &
 
 chown -R mysql:mysql /var/log/adminer &
 chown -R www-data:www-data /var/www/_letsencrypt 
