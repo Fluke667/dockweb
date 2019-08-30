@@ -9,6 +9,9 @@ server {
     listen 80 default_server;
     listen [::]:80 default_server;
     server_name $HOST2_DN;
+    
+    include config/letsencrypt.conf;
+    
     autoindex on;
     return 301 https://$host$request_uri;
 }
@@ -60,7 +63,7 @@ server {
 	}
     
     # Path to the root of your installation
-    root /var/www/$HOST1_DN;
+    root /var/www/$HOST2_DN;
     location = /robots.txt {
         allow all;
         log_not_found off;
@@ -154,7 +157,7 @@ server {
     ssl_stapling_verify on;
 
     # verify chain of trust of OCSP response using Root CA and Intermediate certs
-    ssl_trusted_certificate /etc/letsencrypt/live/$HOST1_DN/chain.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/$HOST2_DN/chain.pem;
 
     # replace with the IP address of your resolver
     resolver 1.1.1.1;
