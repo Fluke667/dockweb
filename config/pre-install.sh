@@ -82,22 +82,34 @@ fi
 if [ ! -d "/etc/nginx/sites-enabled" ]; then
 mkdir -p /etc/nginx/sites-enabled
 fi
-if [ ! -d "/etc/nginx/snippets" ]; then
-mkdir -p /etc/nginx/snippets
+if [ ! -d "/etc/nginx/config" ]; then
+mkdir -p /etc/nginx/config
 fi
 if [ ! -d "/var/lib/nginx" ]; then
 mkdir -p /var/lib/nginx
 fi
+if [ ! -d "/home/dockweb/python3/apps" ]; then
+mkdir -p /home/dockweb/python3/apps
+fi
+if [ ! -d "/home/dockweb/python3/apps/data" ]; then
+mkdir -p /home/dockweb/python3/apps/data
+fi
+if [ ! -d "/run/uwsgi" ]; then
+mkdir -p /run/uwsgi
+fi
+if [ ! -d "/var/www/_letsencrypt" ]; then
+mkdir -p /var/www/_letsencrypt
+fi
 
-
-chown -R mysql:mysql /var/log/adminer &
 
 #addgroup -S php7-fpm 2>/dev/null 
 #adduser -S -D -H -h /var/lib/php7/fpm -s /sbin/nologin -G php7-fpm -g php7-fpm php7-fpm 2>/dev/null
 #addgroup nginx www-data 2>/dev/null
-addgroup -g 700 -S $NGINX_WWWGRP
-adduser -u 700 -D -S -h /var/www -s /sbin/nologin -G $NGINX_WWWUSR $NGINX_WWWGRP
+addgroup -g 700 -S $NGINX_WWWGRP &
+adduser -u 700 -D -S -h /var/www -s /sbin/nologin -G $NGINX_WWWUSR $NGINX_WWWGRP &
 
+chown -R mysql:mysql /var/log/adminer &
+chown -R www-data:www-data /var/www/_letsencrypt 
 
 
 	echo 
