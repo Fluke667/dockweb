@@ -163,7 +163,7 @@ EOF
 
 
         echo
-        echo 'Domain $HOST1_DN init done. Ready for init Nginx.'
+        echo 'Domain $HOST1_DN init done. Ready for init $HOST2_DN.'
         echo
 
 
