@@ -7,7 +7,7 @@ echo " ---> Comment out SSL related directives in configuration"
 echo " ---> Reload Nginx"
    nginx -t && nginx -s reload &
 echo " ---> Obtain Certificate"
-   certbot certonly --webroot -d $HOST1_DN -d www.$HOST1_DN --email info@$HOST1_DN -w /var/www/_letsencrypt -n --agree-tos --force-renewal &
+   certbot certonly --verbose --noninteractive --quiet --agree-tos --nginx --force-renewal --webroot /var/www/_letsencrypt -d "${HOST1_DN}, www.${HOST1_DN}" --email="${HOST_EMAIL}" &
 echo " ---> Uncomment SSL related directives in configuration"
    sed -i -r 's/#?;#//g' /etc/nginx/sites-available/$HOST1_DN.conf &
 echo " ---> Reload Nginx"
