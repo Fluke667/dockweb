@@ -18,7 +18,7 @@ RUN apk update && apk add --no-cache \
          nginx-mod-stream nginx-mod-stream-geoip nginx-mod-http-cache-purge nginx-mod-http-shibboleth nginx-mod-http-upstream-fair \
          nginx-mod-http-vod nginx-mod-devel-kit \
          nginx openssl curl ca-certificates ffmpeg libressl libsmbclient libxml2 re2c python3 su-exec tzdata composer certbot \
-         certbot-nginx mariadb mariadb-client mariadb-server-utils mariadb-mytop pwgen bash nano \
+         certbot-nginx mariadb mariadb-client mariadb-server-utils mariadb-mytop pwgen bash nano virtualenv \
          #rakudo zef \
          busybox busybox-extras busybox-initscripts gettext shadow uwsgi uwsgi-python3 lua5.3 lua5.3-dev luarocks5.3 brotli && \
          
@@ -28,7 +28,6 @@ RUN apk update && apk add --no-cache \
          libtool php7-dev samba-dev tar wget freetype-dev icu-dev libevent-dev libjpeg-turbo-dev libmcrypt-dev libpng-dev \
          libmemcached-dev libzip-dev openldap-dev imagemagick-dev libwebp-dev brotli-dev && \
          
-         pip3 install --upgrade pip gixy && \
          pear config-set php_ini /etc/php7/php.ini && \
          #pear install channel://pear.php.net/HTML_Template_IT-1.3.1 \
          #pear install channel://pear.php.net/PEAR_Frontend_Web-0.7.5 && \
