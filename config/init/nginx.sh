@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-cat >/etc/nginx/conf/fastcgi-php.conf<<-EOF
+cat >/etc/nginx/config/fastcgi-php.conf<<-EOF
 # regex to split $uri to $fastcgi_script_name and $fastcgi_path
 fastcgi_split_path_info ^(.+\.php)(/.+)$;
 
@@ -133,7 +133,7 @@ uwsgi_param X-Forwarded-Proto	        $http_x_forwarded_proto;
 EOF
 
 
-cat >/etc/nginx/conf/letsencrypt.conf<<-EOF
+cat >/etc/nginx/config/letsencrypt.conf<<-EOF
 # ACME-challenge
 location ^~ /.well-known/acme-challenge/ {
 	root /var/www/_letsencrypt;
