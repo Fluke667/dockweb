@@ -13,8 +13,16 @@ try_files $fastcgi_script_name =404;
 set $path_info $fastcgi_path_info;
 fastcgi_param PATH_INFO $path_info;
 
-fastcgi_index index.php;
-include fastcgi.conf;
+# default fastcgi_params
+include fastcgi_params;
+
+# fastcgi settings
+fastcgi_index			index.php;
+fastcgi_buffers                 64 4k;
+fastcgi_pass                    unix:/run/php7/php7.2-fpm.sock;
+fastcgi_buffer_size		32k;
+
+
 EOF
 
 cat >/etc/nginx/modules/http_geoip2.conf<<-EOF
@@ -174,6 +182,12 @@ location ~* \.(?:svgz?|ttf|ttc|otf|eot|woff2?)$ {
     gzip_min_length 256;
     gzip_proxied expired no-cache no-store private no_last_modified no_etag auth;
     gzip_types application/atom+xml application/javascript application/json application/ld+json application/manifest+json application/rss+xml application/vnd.geo+json application/vnd.ms-fontobject application/x-font-ttf application/x-web-app-manifest+json application/xhtml+xml application/xml font/opentype image/bmp image/svg+xml image/x-icon text/cache-manifest text/css text/plain text/vcard text/vnd.rim.location.xloc text/vtt text/x-component text/x-cross-domain-policy;
+
+   # Enable brotli
+   brotli on;
+   brotli_comp_level 6;
+   brotli_types text/plain text/css text/xml application/json application/javascript application/rss+xml application/atom+xml image/svg+xml;
+
 EOF
 
 cat >/etc/nginx/config/security.conf<<-EOF
