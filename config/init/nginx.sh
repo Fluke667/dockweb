@@ -176,7 +176,31 @@ location ~* \.(?:svgz?|ttf|ttc|otf|eot|woff2?)$ {
     gzip_types application/atom+xml application/javascript application/json application/ld+json application/manifest+json application/rss+xml application/vnd.geo+json application/vnd.ms-fontobject application/x-font-ttf application/x-web-app-manifest+json application/xhtml+xml application/xml font/opentype image/bmp image/svg+xml image/x-icon text/cache-manifest text/css text/plain text/vcard text/vnd.rim.location.xloc text/vtt text/x-component text/x-cross-domain-policy;
 EOF
 
+cat >/etc/nginx/config/security.conf<<-EOF
 
+    # HSTS (ngx_http_headers_module is required) (63072000 seconds)
+    add_header Strict-Transport-Security "max-age=63072000" always;
+    add_header X-Content-Type-Options nosniff;
+    add_header X-XSS-Protection "1; mode=block";
+    add_header X-Robots-Tag none;
+    add_header X-Download-Options noopen;
+    add_header X-Permitted-Cross-Domain-Policies none;
+    add_header Referrer-Policy no-referrer;
+    
+    # Remove X-Powered-By, which is an information leak
+    fastcgi_hide_header X-Powered-By;
+    
+    # Test Config
+    #add_header X-Frame-Options "SAMEORIGIN" always;
+    #add_header Referrer-Policy "no-referrer-when-downgrade" always;
+    #add_header Content-Security-Policy "default-src 'self' http: https: data: blob: 'unsafe-inline'" always;
+    #add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
+    
+    # . files
+location ~ /\.(?!well-known) {
+	deny all;
+}
+EOF
 
 	echo 
 	echo 'Nginx init process done. Ready for init Nextcloud.'   
