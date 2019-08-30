@@ -140,6 +140,42 @@ location ^~ /.well-known/acme-challenge/ {
 }
 EOF
 
+cat >/etc/nginx/config/extra.conf<<-EOF
+# favicon.ico
+location = /favicon.ico {
+	log_not_found off;
+	access_log off;
+}
+
+# robots.txt
+location = /robots.txt {
+        allow all;
+	log_not_found off;
+	access_log off;
+}
+
+# assets, media
+location ~* \.(?:css(\.map)?|js(\.map)?|jpe?g|png|gif|ico|cur|heic|webp|tiff?|mp3|m4a|aac|ogg|midi?|wav|mp4|mov|webm|mpe?g|avi|ogv|flv|wmv)$ {
+	expires 7d;
+	access_log off;
+}
+
+# svg, fonts
+location ~* \.(?:svgz?|ttf|ttc|otf|eot|woff2?)$ {
+	add_header Access-Control-Allow-Origin "*";
+	expires 7d;
+	access_log off;
+}
+
+    # Enable gzip but do not remove ETag headers
+    gzip on; 
+    gzip_vary on;  
+    gzip_comp_level 4; 
+    gzip_min_length 256;
+    gzip_proxied expired no-cache no-store private no_last_modified no_etag auth;
+    gzip_types application/atom+xml application/javascript application/json application/ld+json application/manifest+json application/rss+xml application/vnd.geo+json application/vnd.ms-fontobject application/x-font-ttf application/x-web-app-manifest+json application/xhtml+xml application/xml font/opentype image/bmp image/svg+xml image/x-icon text/cache-manifest text/css text/plain text/vcard text/vnd.rim.location.xloc text/vtt text/x-component text/x-cross-domain-policy;
+EOF
+
 
 
 	echo 
