@@ -100,6 +100,10 @@ fi
 if [ ! -d "/var/www/_letsencrypt" ]; then
 mkdir -p /var/www/_letsencrypt
 fi
+if [ ! -d "/etc/composer" ]; then
+mkdir -p /etc/composer
+fi
+
 
 
 #addgroup -S php7-fpm 2>/dev/null 
