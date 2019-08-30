@@ -36,17 +36,8 @@ server {
     ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
     ssl_prefer_server_ciphers off;
 
-    # HSTS (ngx_http_headers_module is required) (63072000 seconds)
-    add_header Strict-Transport-Security "max-age=63072000" always;
-    add_header X-Content-Type-Options nosniff;
-    add_header X-XSS-Protection "1; mode=block";
-    add_header X-Robots-Tag none;
-    add_header X-Download-Options noopen;
-    add_header X-Permitted-Cross-Domain-Policies none;
-    add_header Referrer-Policy no-referrer;
-    
-    # Remove X-Powered-By, which is an information leak
-    fastcgi_hide_header X-Powered-By;
+    # Security Configuration
+	include config/security.conf;
     
     # Python
 	location / {
