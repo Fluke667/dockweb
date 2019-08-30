@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-cat >/etc/nginx/snippets/fastcgi-php.conf<<-EOF
+cat >/etc/nginx/conf/fastcgi-php.conf<<-EOF
 # regex to split $uri to $fastcgi_script_name and $fastcgi_path
 fastcgi_split_path_info ^(.+\.php)(/.+)$;
 
@@ -131,6 +131,16 @@ uwsgi_param X-Real-IP			$remote_addr;
 uwsgi_param X-Forwarded-For		$proxy_add_x_forwarded_for;
 uwsgi_param X-Forwarded-Proto	        $http_x_forwarded_proto;
 EOF
+
+
+cat >/etc/nginx/conf/letsencrypt.conf<<-EOF
+# ACME-challenge
+location ^~ /.well-known/acme-challenge/ {
+	root /var/www/_letsencrypt;
+}
+EOF
+
+
 
 	echo 
 	echo 'Nginx init process done. Ready for init Nextcloud.'   
