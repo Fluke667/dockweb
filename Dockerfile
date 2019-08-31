@@ -41,7 +41,7 @@ RUN apk update && apk add --no-cache \
          pecl config-set php_ini /etc/php7/php.ini && pecl channel-update pecl.php.net && \
          pecl install smbclient && \
          curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
-         #composer self-update && composer global require hirak/prestissimo && \
+         composer global require hirak/prestissimo && \
          apk del build-deps
          
 # Expose the ports for nginx
