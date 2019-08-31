@@ -1,6 +1,6 @@
 FROM fluke667/alpine-java AS java
 FROM fluke667/alpine-golang:latest AS go
-FROM node:10.15-alpine3.10 AS nodejs
+FROM node:10.15-alpine AS nodejs
 FROM ruby:2.6-alpine3.10 AS ruby
 FROM fluke667/alpine
 #FROM node:alpine3.10 as node-builder
