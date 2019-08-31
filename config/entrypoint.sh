@@ -12,7 +12,8 @@ sh /config/init/nextcloud.sh &
 sh /config/init/python3.sh &
 #sh /config/init/openssl.sh &
 sh /config/init/letsencrypt.sh &
-sh /config/init/manage-tools.sh
+sh /config/init/manage-tools.sh &
+sh /config/init/bash.sh
 #cp /config/etc/php7/php.ini /etc/php7/php.ini &
 
 
