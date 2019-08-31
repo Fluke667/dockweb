@@ -39,11 +39,9 @@ RUN apk update && apk add --no-cache \
          
          pear config-set php_ini /etc/php7/php.ini && pear channel-update pear.php.net && \
          pecl config-set php_ini /etc/php7/php.ini && pecl channel-update pecl.php.net && \
-         #pear install channel://pear.php.net/HTML_Template_IT-1.3.1 \
-         #pear install channel://pear.php.net/PEAR_Frontend_Web-0.7.5 && \
          pecl install smbclient && \
          curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
-         composer self-update && composer global require hirak/prestissimo && \
+         #composer self-update && composer global require hirak/prestissimo && \
          apk del build-deps
          
 # Expose the ports for nginx
