@@ -114,7 +114,10 @@ useradd -m -s /bin/bash  -U  dockweb &
 addgroup -g 1011 node && adduser -u 1011 -G node -s /bin/bash -D node &
 
 chown -R mysql:mysql /var/log/adminer &
-chown -R www-data:www-data /var/www/_letsencrypt 
+chown -R www-data:www-data /var/www/_letsencrypt &
+
+ln -s /opt/yarn-v$YARN_VERSION/bin/yarn /usr/bin/yarn &
+ln -s /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/bin/yarnpkg
 
 
 	echo 
