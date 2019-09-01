@@ -42,6 +42,7 @@ RUN apk update && apk add --no-cache \
          pecl install smbclient xdebug && \
          curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
          composer global require hirak/prestissimo && \
+         composer global require --optimize-autoloader && \
          apk del build-deps
          
 # Expose the ports for nginx
