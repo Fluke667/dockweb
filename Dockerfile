@@ -1,18 +1,16 @@
 FROM fluke667/alpine-java AS java
 FROM fluke667/alpine-golang:latest AS go
-#FROM node:10.15-alpine AS nodejs
 FROM node:12-alpine AS nodejs
 FROM ruby:2.6-alpine3.10 AS ruby
 FROM fluke667/alpine:webserver
-#FROM node:alpine3.10 as node-builder
+#FROM redis:5.0-alpine AS redis
 #FROM nginx:alpine3.10 as web-builder
 
 COPY --from=java /javarun /opt/jdk/
 COPY --from=nodejs /usr/local/bin/node /usr/bin/
 COPY --from=nodejs /usr/local/lib/node_modules /usr/local/lib/node_modules
 COPY --from=nodejs /opt/ /opt/
-#yarn -> /opt/yarn/bin/yarn
-#yarnpkg -> /opt/yarn/bin/yarn
+COPY --from=redis /usr/local/bin/redis-server /usr/bin/redis-server
 
 RUN apk update && apk add --no-cache \ 
          php7-pecl-mcrypt php7-pecl-ssh2 php7-pecl-igbinary php7-pecl-msgpack php7-pear php7-fpm php7-bcmath php7-ctype php7-curl php7-dom php7-exif \
