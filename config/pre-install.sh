@@ -119,7 +119,9 @@ fi
 if [ ! -d "/etc/composer" ]; then
 mkdir -p /etc/composer
 fi
-
+if [ ! -d "/etc/bash" ]; then
+mkdir -p /etc/bash
+fi
 
 
 
