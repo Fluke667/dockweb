@@ -5,6 +5,7 @@ cat >/etc/mysql/my.cnf <<-EOF
 # This group is read by the server
 [mysqld]
 datadir=/var/lib/mysql
+basedir=/usr
 pid_file=/run/mysqld/mysqld.pid
 socket=/run/mysqld/mysqld.sock
 symbolic-links=0
@@ -111,6 +112,8 @@ skip-networking
 [mariadb]
 log_warnings=4
 log_error=/var/log/mariadb/error.log
+plugin_dir=/usr/lib/mariadb/plugin
+
 
 # This group is only read by MariaDB-10.3 servers.
 # If you use the same .cnf file for MariaDB of different versions,
