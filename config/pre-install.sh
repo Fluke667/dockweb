@@ -90,6 +90,19 @@ else
          touch /var/log/redis/redis-sentinel.log
 fi
 
+echo "${INFO} ***** PREPARE DIRECTORYS AND FILES (YARN) *****"
+if [ -f "/usr/bin/yarn" ]; then
+yarn
+yanpkg
+else
+ln -s /opt/yarn-v${YARN_VERSION}/bin/yarn /usr/bin/yarn
+ln -s /opt/yarn-v${YARN_VERSION}/bin/yarnpkg /usr/bin/yarnpkg
+yarn
+yarnpkg
+fi
+
+
+
 
 if [ ! -d "/var/log/adminer" ]; then
 mkdir -p /var/log/adminer
@@ -145,10 +158,6 @@ fi
 #chown -R mysql:mysql /var/log/adminer &
 chown -R www-data:www-data /var/www/_letsencrypt &
 
-ln -s /opt/yarn-v${YARN_VERSION}/bin/yarn /usr/bin/yarn &
-ln -s /opt/yarn-v${YARN_VERSION}/bin/yarnpkg /usr/bin/yarnpkg &
-yarn &
-yarnpkg
 
 
 	echo 
