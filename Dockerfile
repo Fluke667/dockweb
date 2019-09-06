@@ -2,7 +2,7 @@ FROM fluke667/alpine-java AS java
 FROM fluke667/alpine-golang:latest AS go
 FROM node:12-alpine AS nodejs
 FROM ruby:2.6-alpine3.10 AS ruby
-FROM fluke667/alpine:webserver
+FROM fluke667/dockbase-webserver:latest
 #FROM redis:5.0-alpine AS redis
 #FROM nginx:alpine3.10 as web-builder
 
