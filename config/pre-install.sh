@@ -37,6 +37,11 @@ else
 	mkdir -p /etc/mysql/mariadb.conf.d
         chown -R ${MARIADB_USR}:${MARIADB_GRP} /etc/mysql
 fi
+if [ -d "/var/lib/mysql" ]; then
+        chown -R ${MARIADB_USR}:${MARIADB_GRP} /var/lib/mysql
+else
+        mkdir -p /var/lib/mysql
+	chown -R ${MARIADB_USR}:${MARIADB_GRP} /var/lib/mysql
 
 echo "${INFO} ***** PREPARE DIRECTORYS AND FILES (NGINX) *****"
 if [ -d "/var/log/nginx" ]; then
