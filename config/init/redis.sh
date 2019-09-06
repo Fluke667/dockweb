@@ -109,8 +109,8 @@ tcp-backlog 511
 # incoming connections. There is no default, so Redis will not listen
 # on a unix socket when not specified.
 #
-# unixsocket /tmp/redis.sock
-# unixsocketperm 700
+unixsocket /run/redis/redis.sock
+unixsocketperm 700
 
 # Close the connection after a client is idle for N seconds (0 to disable)
 timeout 0
@@ -158,7 +158,7 @@ supervised no
 #
 # Creating a pid file is best effort: if Redis is not able to create it
 # nothing bad happens, the server will start and run normally.
-pidfile /var/run/redis_6379.pid
+pidfile /run/redis/redis.pid
 
 # Specify the server verbosity level.
 # This can be one of:
@@ -171,7 +171,7 @@ loglevel notice
 # Specify the log file name. Also the empty string can be used to force
 # Redis to log on the standard output. Note that if you use standard
 # output for logging but daemonize, logs will be sent to /dev/null
-logfile ""
+logfile "/var/log/redis/redis.log"
 
 # To enable logging to the system logger, just set 'syslog-enabled' to yes,
 # and optionally update the other syslog parameters to suit your needs.
@@ -1405,12 +1405,12 @@ daemonize no
 # When running daemonized, Redis Sentinel writes a pid file in
 # /var/run/redis-sentinel.pid by default. You can specify a custom pid file
 # location here.
-pidfile /var/run/redis-sentinel.pid
+pidfile /run/redis/redis-sentinel.pid
 
 # Specify the log file name. Also the empty string can be used to force
 # Sentinel to log on the standard output. Note that if you use standard
 # output for logging but daemonize, logs will be sent to /dev/null
-logfile ""
+logfile "/var/log/redis/redis-sentinel.log"
 
 # sentinel announce-ip <ip>
 # sentinel announce-port <port>
@@ -1623,7 +1623,7 @@ EOF
         
 
 	echo    
-	echo 'Python3 init process done. Ready for init Redis.'   
+	echo 'Redis init process done. Ready for init Letsencrypt.'   
 	echo
       
 
