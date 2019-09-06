@@ -1,9 +1,45 @@
 #!/bin/sh
 
-cat > /etc/bashrc <<-EOF
+cat > /etc/.bashrc <<-EOF
 # Enable programmable completion features.
-if [ -f /etc/bash_completion ]; then
-    source /etc/bash_completion
+if [ -f "/etc/.history" ]; then
+source /etc/.history
+fi
+if [ -f "/etc/.path" ]; then
+source /etc/.path 
+fi
+if [ -f "/etc/.aliases" ]; then
+source /etc/.aliases
+fi
+if [ -f "/etc/.functions" ]; then
+source /etc/.functions
+fi
+if [ -f "/etc/.completion" ]; then
+source /etc/.completion
+fi
+if [ -f "/etc/.profile" ]; then
+source /etc/.profile
+fi
+if [ -f "/etc/.themes" ]; then
+source /etc/.themes
+fi
+if [ -f "/etc/.prompt" ]; then
+source /etc/.prompt
+fi
+if [ -f "/etc/.gitconfig" ]; then
+source /etc/.gitconfig
+fi
+if [ -f "/etc/.inputrc" ]; then
+source /etc/.inputrc
+fi
+if [ -f "/etc/.wgetrc" ]; then
+source /etc/.wgetrc
+fi
+if [ -f "/etc/.plugins" ]; then
+source /etc/.plugins
+fi
+if [ -f "/etc/.themes" ]; then
+source /etc/.themes
 fi
 
 # append to the history file, don't overwrite it
@@ -53,15 +89,19 @@ case $TERM in
 	* )
 		PS1="\u@\h:\w${_p} " ;;
 esac
+EOF
 
-# Add bash aliases.
-if [ -f ~/.bash_aliases ]; then
-    source ~/.bash_aliases
+
+cat > /etc/.completion <<-EOF
+# Enable programmable completion features.
+if [ -f /etc/bash_completion ]; then
+    source /etc/bash_completion
 fi
 EOF
 
 
-cat > /etc/profile <<-EOF
+
+cat > /etc/.profile <<-EOF
 #export CHARSET=UTF-8
 #export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 #export PAGER=less
@@ -74,13 +114,33 @@ for script in /etc/profile.d/*.sh ; do
         fi
 done
 
-if [ -f /etc/bash.bashrc ]; then 
-  . /etc/bash.bashrc
-fi
+
+function extract()    # Handy Extract Program.
+{
+     if [ -f $1 ] ; then
+         case $1 in
+             *.tar.bz2)   tar xvjf $1     ;;
+             *.tar.gz)    tar xvzf $1     ;;
+             *.bz2)       bunzip2 $1      ;;
+             *.rar)       unrar x $1      ;;
+             *.gz)        gunzip $1       ;;
+             *.tar)       tar xvf $1      ;;
+             *.tbz2)      tar xvjf $1     ;;
+             *.tgz)       tar xvzf $1     ;;
+             *.zip)       unzip $1        ;;
+             *.Z)         uncompress $1   ;;
+             *.7z)        7z x $1         ;;
+             *)           echo "'$1' cannot be extracted via >extract<" ;;
+         esac
+     else
+         echo "'$1' is not a valid file"
+     fi
+}
+
 EOF
 
 
-cat > /etc/bash_aliases <<-EOF
+cat > /etc/.aliases <<-EOF
 # Make some possibly destructive commands more interactive.
 alias rm='rm -i'
 alias mv='mv -i'
@@ -125,4 +185,3 @@ EOF
   
   "$@"
 
-"$@"
