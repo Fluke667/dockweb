@@ -93,10 +93,10 @@ if [ ! -d "/var/log/adminer" ]; then
 mkdir -p /var/log/adminer
 fi
 if [ ! -d "/var/www/fluke667_me/adminer" ]; then
-mkdir -p /var/www/fluke667_me/adminer
+mkdir -p /var/www/${HOST2_DN}/adminer
 fi
 if [ ! -d "/var/www/fluke667_host/nextcloud" ]; then
-mkdir -p /var/www/fluke667_host/nextcloud
+mkdir -p /var/www/${HOST1_DN}/nextcloud
 fi
 if [ ! -d "/etc/nginx/sites-available" ]; then
 mkdir -p /etc/nginx/sites-available
@@ -135,11 +135,12 @@ fi
 #adduser -S -D -H -h /var/lib/php7/fpm -s /sbin/nologin -G php7-fpm -g php7-fpm php7-fpm 2>/dev/null
 #addgroup nginx www-data 2>/dev/null
 
-chown -R mysql:mysql /var/log/adminer &
+#chown -R mysql:mysql /var/log/adminer &
 chown -R www-data:www-data /var/www/_letsencrypt &
 
-ln -s /opt/yarn-v$YARN_VERSION/bin/yarn /usr/bin/yarn &
-ln -s /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/bin/yarnpkg
+ln -s /opt/yarn-v${YARN_VERSION}/bin/yarn /usr/bin/yarn &
+ln -s /opt/yarn-v${YARN_VERSION}/bin/yarnpkg /usr/bin/yarnpkg
+
 
 
 	echo 
