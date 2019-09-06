@@ -1,4 +1,5 @@
 #!/bin/sh
+git clone --depth=1 https://github.com/Bash-it/bash-it.git /tmp/bash-it
 
 cat > /etc/.bashrc <<-EOF
 # Enable programmable completion features.
