@@ -141,8 +141,8 @@ fi
 chown -R www-data:www-data /var/www/_letsencrypt &
 
 ln -s /opt/yarn-v${YARN_VERSION}/bin/yarn /usr/bin/yarn &
-ln -s /opt/yarn-v${YARN_VERSION}/bin/yarnpkg /usr/bin/yarnpkg
-yarn
+ln -s /opt/yarn-v${YARN_VERSION}/bin/yarnpkg /usr/bin/yarnpkg &
+yarn &
 yarnpkg
 
 
