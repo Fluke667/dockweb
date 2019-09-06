@@ -94,11 +94,16 @@ fi
 if [ ! -d "/var/log/adminer" ]; then
 mkdir -p /var/log/adminer
 fi
-if [ ! -d "/var/www/fluke667_me/adminer" ]; then
+if [ ! -d "/var/www/${HOST1_DN}/nextcloud" ]; then
+mkdir -p /var/www/${HOST1_DN}
+mkdir -p /var/www/${HOST1_DN}/nextcloud
+fi
+if [ ! -d "/var/www/${HOST2_DN}/adminer" ]; then
+mkdir -p /var/www/${HOST2_DN}
 mkdir -p /var/www/${HOST2_DN}/adminer
 fi
-if [ ! -d "/var/www/fluke667_host/nextcloud" ]; then
-mkdir -p /var/www/${HOST1_DN}/nextcloud
+if [ ! -d "/var/www/${HOST3_DN}" ]; then
+mkdir -p /var/www/${HOST3_DN}
 fi
 if [ ! -d "/etc/nginx/sites-available" ]; then
 mkdir -p /etc/nginx/sites-available
