@@ -1,8 +1,10 @@
 #!/bin/sh
 
-addgroup -g 1010 -S $NGINX_WWWGRP && adduser -u 1010 -D -S -h /var/www -s /sbin/nologin -G $NGINX_WWWUSR $NGINX_WWWGRP &
+addgroup -g 1010 -S $NGINX_WWWGRP &
+adduser -u 1010 -D -S -h /var/www -s /sbin/nologin -G $NGINX_WWWUSR $NGINX_WWWGRP &
 useradd -m -s /bin/bash  -U  dockweb &
-addgroup -g 1011 node && adduser -u 1011 -G node -s /bin/bash -D node &
+addgroup -g 1011 node &
+adduser -u 1011 -G node -s /bin/bash -D node &
 
 
 
