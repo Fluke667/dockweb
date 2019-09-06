@@ -10,4 +10,9 @@ chmod +x /usr/bin/mysqltuner.pl
 cd /config/db && unzip -x master.zip
 cd /config/db/mariadb-sys-master && mysql -u root -p"$MYSQL_ROOT_PASSWORD" < ./sys_10.sql
 
+
+  echo    
+	echo 'Manage Tools init process done. Ready for init Bash.'     
+	echo
+  
   "$@"
