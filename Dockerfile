@@ -38,10 +38,11 @@ RUN apk update && apk add --no-cache \
          
          pear config-set php_ini /etc/php7/php.ini && pear channel-update pear.php.net && \
          pecl config-set php_ini /etc/php7/php.ini && pecl channel-update pecl.php.net && \
-         pecl install smbclient xdebug && \
+         pecl install smbclient && \
+         pecl install xdebug && \
          curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
-         composer global require hirak/prestissimo && \
-         composer global require --optimize-autoloader && \
+         #composer global require hirak/prestissimo && \
+         #composer global require --optimize-autoloader && \
          apk del build-deps
          
 # Expose the ports for nginx
