@@ -10,6 +10,7 @@ sh /config/init/domain3.sh &
 sh /config/init/nginx.sh &
 sh /config/init/nextcloud.sh &
 sh /config/init/python3.sh &
+sh /config/init/redis.sh &
 #sh /config/init/openssl.sh &
 sh /config/init/letsencrypt.sh &
 sh /config/init/manage-tools.sh &
@@ -23,6 +24,7 @@ sh /config/init/bash.sh
 #php-fpm7 &
 #nginx &
 #uwsgi --http :8000 --wsgi-file test.py
+#redis-server /etc/redis/redis.conf
 
 
 "$@"
