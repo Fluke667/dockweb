@@ -41,6 +41,9 @@ fi
 if [ -f "/etc/.themes" ]; then
 source /etc/.themes
 fi
+if [ -f "/etc/.nanorc" ]; then
+source /etc/.nanorc
+fi
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -177,6 +180,20 @@ alias cpuinfo='lscpu'
 ## older system use /proc/cpuinfo ##
 ##alias cpuinfo='less /proc/cpuinfo' ##
 
+EOF
+
+cat>/etc/.nanorc <<-EOF
+set constantshow
+set linenumbers
+set brackets ""')>]}"
+set historylog
+set morespace
+unset nowrap
+set regexp
+set smarthome
+set suspend
+set tabsize 4
+set tabstospaces
 EOF
 
         echo    
