@@ -119,4 +119,10 @@ alias cpuinfo='lscpu'
 
 EOF
 
+        echo    
+	echo 'Manage Tools init process done. Ready for init Bash.'     
+	echo
+  
+  "$@"
+
 "$@"
