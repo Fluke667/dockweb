@@ -62,7 +62,25 @@ else
         chown -R ${NGINX_WWWUSR}:${NGINX_WWWGRP} /run/php7
 fi
 
-echo "${INFO} ***** PREPARE DIRECTORYS AND FILES (PHP-FPM 7.2) *****"
+echo "${INFO} ***** PREPARE DIRECTORYS AND FILES (REDIS) *****"
+if [ -d "/run/redis" ]; then
+         touch /run/redis/redis.sock
+         touch /run/redis/redis.pid
+	 chown -R redis:redis /run/redis
+else
+        mkdir -p /run/redis
+         touch /run/redis/redis.sock
+         touch /run/redis/redis.pid
+         chown -R redis:redis /run/redis
+fi
+if [ -d "/var/log/redis" ]; then
+         touch /var/log/redis/redis.log
+	 touch /var/log/redis/redis-sentinel.log
+else
+         mkdir -p /var/log/redis
+         touch /var/log/redis/redis.log
+         touch /var/log/redis/redis-sentinel.log
+fi
 
 
 
@@ -103,6 +121,7 @@ fi
 if [ ! -d "/etc/composer" ]; then
 mkdir -p /etc/composer
 fi
+
 
 
 
