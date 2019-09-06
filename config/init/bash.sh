@@ -44,6 +44,9 @@ fi
 if [ -f "/etc/.nanorc" ]; then
 source /etc/.nanorc
 fi
+if [ -f "/etc/.sshconf" ]; then
+source /etc/.sshconf
+fi
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -195,6 +198,14 @@ set suspend
 set tabsize 4
 set tabstospaces
 EOF
+
+cat>/etc/.theme <<-EOF
+# Load theme, if a theme was set  
+if [[ ! -z "${BASH_THEME}" ]]; then  
+  # shellcheck source=./themes/colors.theme.bash
+  source "/etc/bash/themes/${BASH_THEME}/${BASH_THEME}.theme.bash"
+  EOF
+
 
         echo    
 	echo 'Manage Tools init process done. Ready for init Bash.'     
