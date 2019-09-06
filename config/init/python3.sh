@@ -23,4 +23,10 @@ plugins = python3,logfile
 logger = file:/var/log/uwsgi.log
 EOF
 
+
+	echo   
+	echo 'Python3 init process done. Ready for init Redis.'   
+	echo
+
+
 "$@"
