@@ -83,8 +83,6 @@ else
 fi
 
 
-
-
 if [ ! -d "/var/log/adminer" ]; then
 mkdir -p /var/log/adminer
 fi
