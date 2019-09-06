@@ -50,3 +50,12 @@ echo " ---> Reload Nginx"
 else
   echo "ENTRYPOINT: /etc/letsencrypt/live/$HOST3_DN/fullchain.pem already exists"
         fi
+        
+        
+        
+	echo   
+        echo 'Letsencrypt init process done. Ready for init Manage Tools.'    
+        echo
+
+        
+"$@"
