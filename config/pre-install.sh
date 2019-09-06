@@ -28,9 +28,11 @@ else
 fi
 
 if [ -d "/etc/mysql" ]; then
+        mkdir -p /etc/mysql/conf.d/
         chown -R ${MARIADB_USR}:${MARIADB_GRP} /etc/mysql
 else
         mkdir -p /etc/mysql
+	mkdir -p /etc/mysql/conf.d/
         chown -R ${MARIADB_USR}:${MARIADB_GRP} /etc/mysql
 fi
 
