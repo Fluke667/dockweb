@@ -12,13 +12,21 @@ cat >/usr/bin/occ <<-EOF
 su-exec nginx php -f ${NEXTCLOUD_PATH}/occ 
 EOF
 
-	echo 
-	echo 'Nextcloud init process done. Ready for .....'     
-	echo
 
 
 #cat >/var/www/nextcloud/config/config.php <<-EOF
 chmod +x /usr/bin/occ
+
+
+
+
+      
+      
+        
+
+	echo 
+	echo 'Nextcloud init process done. Ready for init Python3.'   
+	echo
 
 
 "$@"
