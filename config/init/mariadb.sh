@@ -184,7 +184,7 @@ EOF
 
 
         echo
-        echo 'MariaDB init process done. Ready for init PHP-FPM 7.2'
+        echo -e "${INFO} MariaDB init process done. Ready for init PHP-FPM 7.2"
         echo
 
 fi
