@@ -102,7 +102,7 @@ fi
 echo "${INFO} ***** PREPARE DIRECTORYS AND FILES (YARN) *****"
 if [ -f "/usr/bin/yarn" ]; then
 yarn
-yanpkg
+yarnpkg
 else
 ln -s /opt/yarn-v${VER_YARN}/bin/yarn /usr/bin/yarn
 ln -s /opt/yarn-v${VER_YARN}/bin/yarnpkg /usr/bin/yarnpkg
