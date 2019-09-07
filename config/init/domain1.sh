@@ -141,7 +141,6 @@ server {
 
     # replace with the IP address of your resolver
     resolver 1.1.1.1;
-}
 EOF
 
 
