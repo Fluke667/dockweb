@@ -1,10 +1,6 @@
 #!/bin/sh
 
 cat >/etc/nginx/sites-enabled/${HOST3_DN}.conf<<EOF
-upstream php-handler {
-    server unix:/run/php7/php7.2-fpm.sock;
-}
-
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
@@ -13,7 +9,7 @@ server {
     include config/letsencrypt.conf;
     
     autoindex on;
-    return 301 https://$host$request_uri;
+    return 301 https://\$host\$request_uri;
 }
 
 server {
@@ -36,58 +32,38 @@ server {
     ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
     ssl_prefer_server_ciphers off;
 
-    # HSTS (ngx_http_headers_module is required) (63072000 seconds)
-    add_header Strict-Transport-Security "max-age=63072000" always;
-    add_header X-Content-Type-Options nosniff;
-    add_header X-XSS-Protection "1; mode=block";
-    add_header X-Robots-Tag none;
-    add_header X-Download-Options noopen;
-    add_header X-Permitted-Cross-Domain-Policies none;
-    add_header Referrer-Policy no-referrer;
-    
-    # Remove X-Powered-By, which is an information leak
-    fastcgi_hide_header X-Powered-By;
+    # Security Configuration
+	include config/security.conf;
     
     # Python
 	location / {
-		include python_uwsgi.conf;
+		include config/python_uwsgi.conf;
 	}
     # Django media
 	location /media/ {
-		alias $base/media/;
+		alias \$base/media/;
 	}
 
     # Django static
 	location /static/ {
-		alias $base/static/;
+		alias \$base/static/;
 	}
     
     # Path to the root of your installation
     root /var/www/$HOST3_DN;
-    location = /robots.txt {
-        allow all;
-        log_not_found off;
-        access_log off;
-    }
 
     # set max upload size
     client_max_body_size 512M;
-    fastcgi_buffers 64 4K;
     
-    # Enable gzip but do not remove ETag headers
-    gzip on;
-    gzip_vary on;
-    gzip_comp_level 4;
-    gzip_min_length 256;
-    gzip_proxied expired no-cache no-store private no_last_modified no_etag auth;
-    gzip_types application/atom+xml application/javascript application/json application/ld+json application/manifest+json application/rss+xml application/vnd.geo+json application/vnd.ms-fontobject application/x-font-ttf application/x-web-app-manifest+json application/xhtml+xml application/xml font/opentype image/bmp image/svg+xml image/x-icon text/cache-manifest text/css text/plain text/vcard text/vnd.rim.location.xloc text/vtt text/x-component text/x-cross-domain-policy;
+    # Extra Configuration File 
+    include config/extra.conf;
     
     # Uncomment if your server is build with the ngx_pagespeed module
     # This module is currently not supported.
     #pagespeed off;
 
     location / {
-        rewrite ^ /index.php$request_uri;
+        rewrite ^ /index.php\$request_uri;
     }
 
     location ~ ^\/(?:build|tests|config|lib|3rdparty|templates|data)\/ {
@@ -100,8 +76,8 @@ server {
     location ~ ^\/(?:index|remote|public|cron|core\/ajax\/update|status|ocs\/v[12]|updater\/.+|oc[ms]-provider\/.+)\.php(?:$|\/) {
         fastcgi_split_path_info ^(.+?\.php)(\/.*|)$;
         include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_param PATH_INFO $fastcgi_path_info;
+        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+        fastcgi_param PATH_INFO \$fastcgi_path_info;
         fastcgi_param HTTPS on;
         # Avoid sending the security headers twice
         fastcgi_param modHeadersAvailable true;
@@ -113,14 +89,14 @@ server {
     }
 
     location ~ ^\/(?:updater|oc[ms]-provider)(?:$|\/) {
-        try_files $uri/ =404;
+        try_files \$uri/ =404;
         index index.php;
     }
 
     # Adding the cache control header for js, css and map files
     # Make sure it is BELOW the PHP block
     location ~ \.(?:css|js|woff2?|svg|gif|map)$ {
-        try_files $uri /index.php$request_uri;
+        try_files \$uri /index.php\$request_uri;
         add_header Cache-Control "public, max-age=15778463";
         # Add headers to serve security related headers (It is intended to
         # have those duplicated to the ones above)
@@ -145,7 +121,7 @@ server {
     }
 
     location ~ \.(?:png|html|ttf|ico|jpg|jpeg)$ {
-        try_files $uri /index.php$request_uri;
+        try_files \$uri /index.php\$request_uri;
         # Optional: Don't log access to other assets
         access_log off;
     }
@@ -157,11 +133,10 @@ server {
     ssl_stapling_verify on;
 
     # verify chain of trust of OCSP response using Root CA and Intermediate certs
-    ssl_trusted_certificate /etc/letsencrypt/live/$HOST3_DN/chain.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/$HOST1_DN/chain.pem;
 
     # replace with the IP address of your resolver
     resolver 1.1.1.1;
-}
 EOF
 
 
