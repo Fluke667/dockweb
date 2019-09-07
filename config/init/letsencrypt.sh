@@ -54,7 +54,7 @@ else
         
         
 	echo   
-        echo 'Letsencrypt init process done. Ready for init Manage Tools.'    
+        echo -e "${INFO} Letsencrypt init process done. Ready for init Manage Tools."
         echo
 
         
