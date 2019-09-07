@@ -25,7 +25,7 @@ chmod +x /usr/bin/occ
         
 
 	echo 
-	echo 'Nextcloud init process done. Ready for init Python3.'   
+	echo -e "${INFO} Nextcloud init process done. Ready for init Python3."  
 	echo
 
 
