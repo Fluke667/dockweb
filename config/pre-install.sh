@@ -42,7 +42,7 @@ if [ -d "/var/lib/mysql" ]; then
 else
         mkdir -p /var/lib/mysql
 	chown -R ${MARIADB_USR}:${MARIADB_GRP} /var/lib/mysql
-
+fi
 echo "${INFO} ***** PREPARE DIRECTORYS AND FILES (NGINX) *****"
 if [ -d "/var/log/nginx" ]; then
         chown -R ${NGINX_WWWUSR}:${NGINX_WWWGRP} /var/log/nginx
