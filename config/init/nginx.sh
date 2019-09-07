@@ -217,7 +217,7 @@ location ~ /\.(?!well-known) {
 EOF
 
 	echo 
-	echo 'Nginx init process done. Ready for init Nextcloud.'   
+	echo -e "${INFO} Nginx init process done. Ready for init Nextcloud."
 	echo
 
 
