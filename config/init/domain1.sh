@@ -13,7 +13,7 @@ server {
     include config/letsencrypt.conf;
     
     autoindex on;
-    return 301 https://$host$request_uri;
+    return 301 https://\$host\$request_uri;
 }
 
 server {
@@ -45,12 +45,12 @@ server {
 	}
     # Django media
 	location /media/ {
-		alias $base/media/;
+		alias \$base/media/;
 	}
 
     # Django static
 	location /static/ {
-		alias $base/static/;
+		alias \$base/static/;
 	}
     
     # Path to the root of your installation
@@ -67,7 +67,7 @@ server {
     #pagespeed off;
 
     location / {
-        rewrite ^ /index.php$request_uri;
+        rewrite ^ /index.php\$request_uri;
     }
 
     location ~ ^\/(?:build|tests|config|lib|3rdparty|templates|data)\/ {
