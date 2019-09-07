@@ -89,7 +89,7 @@ server {
     }
 
     location ~ ^\/(?:updater|oc[ms]-provider)(?:$|\/) {
-        try_files $uri/ =404;
+        try_files \$uri/ =404;
         index index.php;
     }
 
