@@ -1623,7 +1623,7 @@ EOF
         
 
 	echo    
-	echo 'Redis init process done. Ready for init Letsencrypt.'   
+	echo -e "${INFO} Redis init process done. Ready for init Letsencrypt."   
 	echo
       
 
