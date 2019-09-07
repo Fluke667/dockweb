@@ -2561,7 +2561,7 @@ EOF
 
 
         echo
-        echo 'PHP-FPM-7.2 init process done. Ready for init Domain Names.'
+        echo -e "${INFO} PHP-FPM-7.2 init process done. Ready for init Domain Names."
         echo
 
 
