@@ -209,7 +209,7 @@ if [[ ! -z "${BASH_THEME}" ]]; then
 
 
         echo    
-	echo 'Manage Tools init process done. Ready for init Bash.'     
+	echo -e "${INFO} Manage Tools init process done. Ready for init Bash." 
 	echo
   
   "$@"
