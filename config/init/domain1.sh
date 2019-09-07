@@ -6,7 +6,7 @@ server {
 	listen [::]:443 ssl http2;
 
 	server_name $HOST1_DN;
-  root /var/www/$HOST1_DN;
+        root /var/www/$HOST1_DN;
 
 	# SSL
 	ssl_certificate /etc/letsencrypt/live/$HOST1_DN/fullchain.pem;
