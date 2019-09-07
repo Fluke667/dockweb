@@ -166,7 +166,7 @@ EOF
 
 
         echo
-        echo 'Domain $HOST3_DN init done. Ready for init Nginx.'
+        echo -e "${INFO} Domain $HOST3_DN init done. Ready for init Nginx."
         echo
 
 
