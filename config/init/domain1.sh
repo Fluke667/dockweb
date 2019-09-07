@@ -80,8 +80,8 @@ server {
     location ~ ^\/(?:index|remote|public|cron|core\/ajax\/update|status|ocs\/v[12]|updater\/.+|oc[ms]-provider\/.+)\.php(?:$|\/) {
         fastcgi_split_path_info ^(.+?\.php)(\/.*|)$;
         include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_param PATH_INFO $fastcgi_path_info;
+        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+        fastcgi_param PATH_INFO \$fastcgi_path_info;
         fastcgi_param HTTPS on;
         # Avoid sending the security headers twice
         fastcgi_param modHeadersAvailable true;
@@ -125,7 +125,7 @@ server {
     }
 
     location ~ \.(?:png|html|ttf|ico|jpg|jpeg)$ {
-        try_files $uri /index.php$request_uri;
+        try_files \$uri /index.php\$request_uri;
         # Optional: Don't log access to other assets
         access_log off;
     }
