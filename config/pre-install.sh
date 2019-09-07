@@ -170,7 +170,7 @@ chown -R www-data:www-data /var/www/_letsencrypt &
 
 
 	echo 
-	echo 'Pre-Install process done. Ready for init MariaDB.'   
+	echo -e "${INFO} Pre-Install process done. Ready for init MariaDB."
 	echo
 
 "$@"
