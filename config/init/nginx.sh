@@ -66,7 +66,12 @@ http {
         client_body_timeout 12;
         client_header_timeout 12;
         send_timeout 10;
-
+	##
+        # PHP Handler
+        ##
+	upstream php-handler {
+	    server unix:/run/php7/php7.2-fpm.sock;
+        }
         # server_names_hash_bucket_size 64;
         # server_name_in_redirect off;
 
@@ -184,9 +189,9 @@ location ~* \.(?:svgz?|ttf|ttc|otf|eot|woff2?)$ {
     gzip_types application/atom+xml application/javascript application/json application/ld+json application/manifest+json application/rss+xml application/vnd.geo+json application/vnd.ms-fontobject application/x-font-ttf application/x-web-app-manifest+json application/xhtml+xml application/xml font/opentype image/bmp image/svg+xml image/x-icon text/cache-manifest text/css text/plain text/vcard text/vnd.rim.location.xloc text/vtt text/x-component text/x-cross-domain-policy;
 
    # Enable brotli
-   brotli on;
-   brotli_comp_level 6;
-   brotli_types text/plain text/css text/xml application/json application/javascript application/rss+xml application/atom+xml image/svg+xml;
+   #brotli on;
+   #brotli_comp_level 6;
+   #brotli_types text/plain text/css text/xml application/json application/javascript application/rss+xml application/atom+xml image/svg+xml;
 
 EOF
 
