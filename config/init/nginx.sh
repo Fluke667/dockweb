@@ -88,6 +88,8 @@ http {
 	# OCSP stapling
 	ssl_stapling on;
 	ssl_stapling_verify on;
+	resolver 1.1.1.1 1.0.0.1;
+	resolver_timeout 2s;
         ##
         # Logging Settings
         ##
