@@ -166,7 +166,7 @@ EOF
 
 
         echo
-        echo 'Domain $HOST2_DN init done. Ready for init $HOST3_DN.'
+        echo -e "${INFO} Domain $HOST2_DN init done. Ready for init $HOST3_DN."
         echo
 
 
