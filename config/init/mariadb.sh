@@ -1,5 +1,7 @@
 #!/bin/sh
 
+sed -i 's/^.*auth_pam_tool_dir.*$/#auth_pam_tool_dir not exists/' /usr/bin/mysql_install_db &
+
 cat >/etc/mysql/my.cnf <<-EOF
 
 # This group is read by the server
@@ -48,7 +50,7 @@ skip-name-resolve
 query_cache_type=1
 query_cache_limit=2M
 query_cache_min_res_unit=2k
-query_cache_siz =64M
+query_cache_size=64M
 tmp_table_size=64M
 max_heap_table_size=64M
 slow-query-log=1
@@ -178,7 +180,7 @@ EOF
 	    fi
 	fi
 	##########
-	/usr/bin/mysqld --user=mysql --bootstrap --verbose=0 --skip-name-resolve --skip-networking=0 < /etc/mysql/tfile
+	/usr/bin/mysql_install_db --user=mysql --bootstrap --verbose=0 --skip-name-resolve --skip-networking=0 < /etc/mysql/tfile
 	rm -f /etc/mysql/tfile
 
 
