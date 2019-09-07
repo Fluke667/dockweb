@@ -14,7 +14,7 @@ chmod 0777 ${NEXTCLOUD_CONF} &
 chmod 0777 ${NEXTCLOUD_PATH}/apps &
 crontab -u www-data -l ; echo "*/5 * * * * php -f ${NEXTCLOUD_PATH}/cron.php > /dev/null 2>&1" | crontab -u www-data - &
 
-cat >/usr/bin/occ <<-EOF
+cat > /usr/bin/occ <<-EOF
 su-exec nginx php -f ${NEXTCLOUD_PATH}/occ 
 EOF
 
@@ -33,9 +33,6 @@ cat > ${NEXTCLOUD_CONF}/autoconfig.php <<-EOF
 );
 EOF
 
-#occ maintenance:install --database '$NEXTCLOUD_DB_TYPE' --database-name '$NEXTCLOUD_DB_NAME' --database-user '$NEXTCLOUD_DB_USER' --database-pass '$NEXTCLOUD_DB_PASS' --admin-user '$NEXTCLOUD_USER' --admin-pass '$NEXTCLOUD_PASS' --data-dir '$NEXTCLOUD_DATA'" &
-occ config:system:set trusted_domains 0 --value=$HOST1_DN' &
-occ config:system:set overwrite.cli.url --value=https://$HOST1_DN'
 
 
 
