@@ -25,7 +25,7 @@ EOF
 
 
 	echo   
-	echo 'Python3 init process done. Ready for init Redis.'   
+	echo -e "${INFO} Python3 init process done. Ready for init Redis." 
 	echo
 
 
