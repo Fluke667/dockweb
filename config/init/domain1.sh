@@ -1,10 +1,6 @@
 #!/bin/sh
 
 cat >/etc/nginx/sites-enabled/${HOST1_DN}.conf<<EOF
-upstream php-handler {
-    server unix:/run/php7/php7.2-fpm.sock;
-}
-
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
