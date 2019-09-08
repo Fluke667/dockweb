@@ -54,7 +54,7 @@ EOF
 cat >/etc/nginx/config/extras.conf<<-EOF
 # index options
 autoindex on;
-index index.html index.htm index.php index.py index.cgi index.pl index.xhtml;
+index index.html index.htm index.php index.py index.cgi index.pl index.xhtml index.shtml;
 
 # favicon.ico
 location = /favicon.ico {
