@@ -52,6 +52,9 @@ EOF
 
 
 cat >/etc/nginx/config/extras.conf<<-EOF
+#dir listing
+autoindex on;
+
 # favicon.ico
 location = /favicon.ico {
 	log_not_found off;
