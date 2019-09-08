@@ -19,10 +19,16 @@ server {
 	# logging
 	error_log /var/log/nginx/$HOST1_DN.error.log warn;
 
-	# index.html fallback
-	location / {
-		try_files $uri $uri/ /index.html;
-	}
+        # index.php fallback
+        location / {
+        try_files $uri $uri/ /index.php?$query_string;   #index.php fallback
+        include config/mod_fancyindex.conf;              #Enable fancy indexes
+        }
+
+        # handle .php
+        location ~ \.php$ {
+                include config/php_fastcgi.conf;
+        }
 
 	# additional config
 	include config/extra.conf;
