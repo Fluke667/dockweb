@@ -161,7 +161,13 @@ mkdir -p /etc/bash
 fi
 
 echo "${INFO} ***** GENERATING DIFFIE HELLMAN CERTIFICATE *****"
-openssl dhparam -out /etc/nginx/dhparam.pem 2048
+openssl dhparam -out /etc/nginx/dhparam.pem 2048 &
+
+
+
+cp -R /config/files/fancyindex /var/www/${HOST1_DN} &
+cp -R /config/files/fancyindex /var/www/${HOST2_DN} &
+cp -R /config/files/fancyindex /var/www/${HOST3_DN}
 
 #addgroup -S php7-fpm 2>/dev/null 
 #adduser -S -D -H -h /var/lib/php7/fpm -s /sbin/nologin -G php7-fpm -g php7-fpm php7-fpm 2>/dev/null
