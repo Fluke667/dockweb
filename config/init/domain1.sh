@@ -2,7 +2,7 @@
 
 if [ ! -f "/etc/nginx/sites-enabled/${HOST1_DN}.conf" ]
         then
-cat >/etc/nginx/sites-enabled/${HOST1_DN}.conf<<EOF
+cat >/etc/nginx/sites-enabled/${HOST1_DN}.conf<<-EOF
 server {
 	listen 443 ssl http2;
 	listen [::]:443 ssl http2;
