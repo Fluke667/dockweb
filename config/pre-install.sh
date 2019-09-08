@@ -112,10 +112,10 @@ fi
 
 echo "${INFO} ***** PREPARE DIRECTORYS AND FILES (LETSENCRYPT) *****"
 if [ -d "/var/www/_letsencrypt" ]; then
-chown www-data /var/www/_letsencrypt
+chown -R www-data:www-data /var/www/_letsencrypt
 else
 mkdir -p /var/www/_letsencrypt
-chown www-data /var/www/_letsencrypt
+chown -R www-data:www-data /var/www/_letsencrypt
 fi
 
 
@@ -146,17 +146,8 @@ fi
 if [ ! -d "/var/lib/nginx" ]; then
 mkdir -p /var/lib/nginx
 fi
-if [ ! -d "/home/dockweb/python3/apps" ]; then
-mkdir -p /home/dockweb/python3/apps
-fi
-if [ ! -d "/home/dockweb/python3/apps/data" ]; then
-mkdir -p /home/dockweb/python3/apps/data
-fi
 if [ ! -d "/run/uwsgi" ]; then
 mkdir -p /run/uwsgi
-fi
-if [ ! -d "/var/www/_letsencrypt" ]; then
-mkdir -p /var/www/_letsencrypt
 fi
 if [ ! -d "/etc/composer" ]; then
 mkdir -p /etc/composer
@@ -172,7 +163,6 @@ fi
 #addgroup nginx www-data 2>/dev/null
 
 #chown -R mysql:mysql /var/log/adminer &
-chown -R www-data:www-data /var/www/_letsencrypt &
 
 
 
