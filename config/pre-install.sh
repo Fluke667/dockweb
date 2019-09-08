@@ -110,6 +110,13 @@ yarn
 yarnpkg
 fi
 
+echo "${INFO} ***** PREPARE DIRECTORYS AND FILES (LETSENCRYPT) *****"
+if [ -d "/var/www/_letsencrypt" ]; then
+chown www-data /var/www/_letsencrypt
+else
+mkdir -p /var/www/_letsencrypt
+chown www-data /var/www/_letsencrypt
+fi
 
 
 
