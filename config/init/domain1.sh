@@ -1,5 +1,7 @@
 #!/bin/sh
 
+if [ ! -f "/etc/nginx/sites-enabled/${HOST1_DN}.conf" ]
+        then
 cat >/etc/nginx/sites-enabled/${HOST1_DN}.conf<<EOF
 server {
 	listen 443 ssl http2;
@@ -63,6 +65,9 @@ server {
 	}
 }
 EOF
+else
+echo "File ${HOST1_DN}.conf exists."
+fi
 
         echo
         echo -e "${INFO} Domain $HOST1_DN init done. Ready for init $HOST2_DN."
