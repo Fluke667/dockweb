@@ -50,6 +50,19 @@ fastcgi_param SCRIPT_FILENAME	\$realpath_root\$fastcgi_script_name;
 #fastcgi_param PHP_ADMIN_VALUE	"open_basedir=$base/:/usr/lib/php/:/tmp/";
 EOF
 
+cat >/etc/nginx/config/hashes.conf<<-EOF
+variables_hash_max_size         2048;
+#variables_hash_bucket_size      64;
+
+map_hash_max_size               2048;
+#map_hash_bucket_size            64;
+
+server_names_hash_max_size      1024;
+#server_names_hash_bucket_size   64;
+
+types_hash_max_size             1024;
+#types_hash_bucket_size          64;
+EOF
 
 cat >/etc/nginx/config/extras.conf<<-EOF
 # index options
@@ -113,6 +126,9 @@ http {
 	log_not_found off;
 	types_hash_max_size 2048;
 	client_max_body_size 2000M;
+	
+	## Hashes Config
+	include /etc/nginx/config/hashes.conf;
 
 	# MIME
 	include mime.types;
