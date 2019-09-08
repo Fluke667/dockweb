@@ -1,5 +1,5 @@
 (() => {
-  const prefix = '/.nginx';
+  const prefix = '/royal';
 
   async function addIcons() {
     const iconMap = await fetch(`${prefix}/icons.json`).then(response => response.json());
