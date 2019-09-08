@@ -1,11 +1,11 @@
 #!/bin/sh
 
+echo "${INFO} ***** ADDING USERS AND GROUPS *****"
 addgroup -g 1010 -S $NGINX_WWWGRP &
 adduser -u 1010 -D -S -h /var/www -s /sbin/nologin -G $NGINX_WWWUSR $NGINX_WWWGRP &
 useradd -m -s /bin/bash  -U  dockweb &
 addgroup -g 1011 node &
 adduser -u 1011 -G node -s /bin/bash -D node &
-
 
 
 echo "${INFO} ***** PREPARE DIRECTORYS AND FILES (MARIADB) *****"
@@ -58,6 +58,21 @@ else
         mkdir -p /run/nginx
 	touch /run/nginx/nginx.pid
         chown -R ${NGINX_WWWUSR}:${NGINX_WWWGRP} /run/nginx
+fi
+if [ ! -d "/etc/nginx/sites-available" ]; then
+mkdir -p /etc/nginx/sites-available
+fi
+if [ ! -d "/etc/nginx/sites-enabled" ]; then
+mkdir -p /etc/nginx/sites-enabled
+fi
+if [ ! -d "/etc/nginx/config" ]; then
+mkdir -p /etc/nginx/config
+fi
+if [ ! -d "/var/lib/nginx" ]; then
+mkdir -p /var/lib/nginx
+fi
+if [ ! -d "/etc/nginx/modules" ]; then
+mkdir -p /etc/nginx/modules
 fi
 
 echo "${INFO} ***** PREPARE DIRECTORYS AND FILES (PHP-FPM 7.2) *****"
@@ -118,11 +133,7 @@ mkdir -p /var/www/_letsencrypt
 chown -R www-data:www-data /var/www/_letsencrypt
 fi
 
-
-
-if [ ! -d "/var/log/adminer" ]; then
-mkdir -p /var/log/adminer
-fi
+echo "${INFO} ***** PREPARE DIRECTORYS AND FILES (DOMAINS) *****"
 if [ ! -d "/var/www/${HOST1_DN}/nextcloud" ]; then
 mkdir -p /var/www/${HOST1_DN}
 mkdir -p /var/www/${HOST1_DN}/nextcloud
@@ -134,17 +145,10 @@ fi
 if [ ! -d "/var/www/${HOST3_DN}" ]; then
 mkdir -p /var/www/${HOST3_DN}
 fi
-if [ ! -d "/etc/nginx/sites-available" ]; then
-mkdir -p /etc/nginx/sites-available
-fi
-if [ ! -d "/etc/nginx/sites-enabled" ]; then
-mkdir -p /etc/nginx/sites-enabled
-fi
-if [ ! -d "/etc/nginx/config" ]; then
-mkdir -p /etc/nginx/config
-fi
-if [ ! -d "/var/lib/nginx" ]; then
-mkdir -p /var/lib/nginx
+
+echo "${INFO} ***** PREPARE DIRECTORYS AND FILES (VARIOUS) *****"
+if [ ! -d "/var/log/adminer" ]; then
+mkdir -p /var/log/adminer
 fi
 if [ ! -d "/run/uwsgi" ]; then
 mkdir -p /run/uwsgi
@@ -156,7 +160,8 @@ if [ ! -d "/etc/bash" ]; then
 mkdir -p /etc/bash
 fi
 
-
+echo "${INFO} ***** GENERATING DIFFIE HELLMAN CERTIFICATE *****"
+openssl dhparam -out /etc/nginx/dhparam.pem 2048
 
 #addgroup -S php7-fpm 2>/dev/null 
 #adduser -S -D -H -h /var/lib/php7/fpm -s /sbin/nologin -G php7-fpm -g php7-fpm php7-fpm 2>/dev/null
