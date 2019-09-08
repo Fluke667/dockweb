@@ -21,7 +21,7 @@ server {
 
         # index.php fallback
         location / {
-        try_files $uri $uri/ /index.php?$query_string;   #index.php fallback
+        try_files \$uri \$uri/ /index.php?$query_string;   #index.php fallback
         include config/mod_fancyindex.conf;              #Enable fancy indexes
         }
 
