@@ -1,16 +1,16 @@
-#FROM fluke667/alpine-java AS java
-#FROM fluke667/alpine-golang:latest AS go
-#FROM node:12-alpine AS nodejs
-#FROM ruby:2.6-alpine3.10 AS ruby
+FROM fluke667/alpine-java AS java
+FROM fluke667/alpine-golang:latest AS go
+FROM node:12-alpine AS nodejs
+FROM ruby:2.6-alpine3.10 AS ruby
 ###FROM nextcloud:16.0-fpm-alpine as nextcloud
 FROM fluke667/dockbase-webserver:latest
 ###FROM redis:5.0-alpine AS redis
 ###FROM nginx:alpine3.10 as web-builder
 
-#COPY --from=java /javarun /opt/jdk/
-#COPY --from=nodejs /usr/local/bin/node /usr/bin/
-#COPY --from=nodejs /usr/local/lib/node_modules /usr/local/lib/node_modules
-#COPY --from=nodejs /opt/ /opt/
+COPY --from=java /javarun /opt/jdk/
+COPY --from=nodejs /usr/local/bin/node /usr/bin/
+COPY --from=nodejs /usr/local/lib/node_modules /usr/local/lib/node_modules
+COPY --from=nodejs /opt/ /opt/
 ###COPY --from=redis /usr/local/bin/redis-server /usr/bin/redis-server
 ###COPY --from=nextcloud /var/www /var/www/
 
@@ -37,11 +37,11 @@ RUN apk update && apk add --no-cache \
          libmemcached-dev libzip-dev openldap-dev imagemagick-dev libwebp-dev brotli-dev && \
          
          
-         #pear config-set php_ini /etc/php7/php.ini && pear channel-update pear.php.net && \
-         #pecl config-set php_ini /etc/php7/php.ini && pecl channel-update pecl.php.net && \
-         #pecl install smbclient && \
-         #pecl install xdebug && \
-         #curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
+         pear config-set php_ini /etc/php7/php.ini && pear channel-update pear.php.net && \
+         pecl config-set php_ini /etc/php7/php.ini && pecl channel-update pecl.php.net && \
+         pecl install smbclient && \
+         pecl install xdebug && \
+         curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
          #composer global require hirak/prestissimo && \
          #composer global require --optimize-autoloader && \
          apk del build-deps
