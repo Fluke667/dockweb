@@ -27,7 +27,6 @@ RUN apk update && apk add --no-cache \
          nginx-mod-http-vod nginx-mod-devel-kit \
          nginx openssl curl ca-certificates ffmpeg libressl libsmbclient libxml2 re2c python3 su-exec tzdata certbot \
          certbot-nginx mariadb mariadb-client mariadb-server-utils mariadb-mytop pwgen bash redis bash-completion nano mysecureshell unit \
-         #rakudo zef \
          busybox busybox-extras busybox-initscripts gettext shadow uwsgi uwsgi-python3 lua5.3 lua5.3-dev luarocks5.3 brotli \
          libstdc++ && \
          
